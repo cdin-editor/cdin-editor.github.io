@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Plus } from "lucide-react";
 ---
 
 <BaseLayout>
-    <h1 class="text-red-500">wazzup</h1>
-    <Button>click me</Button>
-    <Badge variant="outline">Badge</Badge>
+    <div class="relative">
+        <Plus className="absolute -left-[9.5px] -top-[8px] size-4 opacity-70" />
+        <div class="h-300">hi</div>
+    </div>
 </BaseLayout>
