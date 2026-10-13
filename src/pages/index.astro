@@ -4,8 +4,19 @@ import { Plus } from "lucide-react";
 ---
 
 <BaseLayout>
-    <div class="relative">
-        <Plus className="absolute -left-[9.5px] -top-[8px] size-4 opacity-70" />
-        <div class="h-300">hi</div>
+    <div class="relative w-full">
+        <!-- <Plus className="absolute -left-[9.5px] -top-[8px] size-4 opacity-70" /> -->
+        <!-- <div class="h-300">hi</div> -->
+        <div class="px-10 flex items-center gap-8">
+            <span class="font-mono text-muted-foreground text-nowrap text-xs">
+                01 / CDIN
+            </span>
+            <div class="relative flex items-center w-full">
+                <div class="h-px w-full bg-[linear-gradient(to_right,transparent,var(--border)_15%,var(--border)_85%,transparent)]" />
+                <h1 class="italic relative top-4 bg-background lg:text-7xl font-bold">
+                    CDIN
+                </h1>
+            </div>
+        </div>
     </div>
 </BaseLayout>
