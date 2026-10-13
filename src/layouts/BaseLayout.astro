@@ -39,10 +39,12 @@ import Navbar from "@/components/navbar.astro";
         <meta name="generator" content={Astro.generator} />
         <title>cdin</title>
     </head>
-    <body>
-        <main class="max-w-[1900px] mx-auto">
+    <body class="min-h-dvh flex flex-col">
+        <main class="max-w-[1900px] mx-auto flex flex-1 flex-col w-full">
             <Navbar />
-            <slot />
+            <div class="max-w-[1700px] mx-auto border-x flex flex-1 flex-col w-full">
+                <slot />
+            </div>
         </main>
     </body>
 </html>
