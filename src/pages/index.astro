@@ -1,16 +1,11 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+    <h1 class="text-red-500">wazzup</h1>
+    <Button>click me</Button>
+    <Badge variant="outline">Badge</Badge>
+</BaseLayout>
