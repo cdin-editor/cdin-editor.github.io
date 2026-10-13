@@ -1,20 +1,58 @@
 ---
+import { navLinks } from "@/data/navlinks";
+import { ModeToggle } from "./ModeToggle";
 ---
 
-<header class="">
+<header>
     <nav>
-        <ul>
-            <div>
-                <li>
-                    <a href="/">logo</a>
-                </li>
-                <li>
-                    <a href="/">links</a>
-                </li>
+        <ul class="flex items-stretch justify-between gap-4 border-b">
+            <div class="flex items-stretch">
+                <a class="border-r px-4" href="/">
+                    <!-- <img
+                        src="/public/cdin-icons/svg/cdin-outline-transparent.svg"
+                        alt="cdin-outline-transparent.svg"
+                        width="1980"
+                        height="1080"
+                        class="hidden dark:flex aspect-square w-16 items-center justify-center"
+                    /> -->
+                    <img
+                        src="/public/cdin-icons/svg/cdin-original-transparent.svg"
+                        alt="cdin-original-transparent.svg"
+                        width="1980"
+                        height="1080"
+                        class="aspect-square w-16 flex items-center justify-center"
+                    />
+                </a>
+                {navLinks.map((link) => (
+                    <li>
+                        <a
+                            class="inline-block duration-150 opacity-60 hover:opacity-100 p-5 hover:bg-accent"
+                            href={link.href}
+                        >
+                            {link.title}
+                        </a>
+                    </li>
+                ))}
             </div>
-            <div>
+            <div class="flex items-stretch">
+                <li class="flex">
+                    <ModeToggle client:visible />
+                </li>
                 <li>
-                    <a href="/">others</a>
+                    <a
+                        class="p-5 flex items-center bg-primary dark:text-black text-white gap-2 hover:opacity-95 duration-100"
+                        href="https://github.com/cdin-editor/cdin"
+                        target="_blank"
+                    >
+                        <img
+                            src="/public/github.svg"
+                            alt="github.svg"
+                            width="1980"
+                            height="1080"
+                            class="aspect-square w-6 invert dark:invert-0"
+                        />
+                        GitHub
+                    </a>
                 </li>
             </div>
         </ul>
