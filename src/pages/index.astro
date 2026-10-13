@@ -2,10 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ModeToggle } from "@/components/ModeToggle";
 ---
 
 <BaseLayout>
     <h1 class="text-red-500">wazzup</h1>
     <Button>click me</Button>
     <Badge variant="outline">Badge</Badge>
+    <ModeToggle client:visible />
 </BaseLayout>
