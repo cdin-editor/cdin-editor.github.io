@@ -19,7 +19,13 @@ import Link from "@/components/Link.astro";
         </span>
     </div>
     <h1 class="lg:text-8xl sm:text-6xl text-5xl lg:max-w-2/3 text-center my-8 font-bold">
-        <span class="text-green-700">Vim-like</span> lightweight text editor...
+        <span
+            class="vim-like relative inline-block text-green-700"
+            data-text="Vim-like"
+        >
+            Vim-like
+        </span>{" "}
+        lightweight text editor...
     </h1>
     <p class="text-muted-foreground lg:max-w-1/2 sm:text-base text-sm text-center">
         A blazing-fast, keyboard-driven text editor with built-in Vim-style
@@ -42,3 +48,42 @@ import Link from "@/components/Link.astro";
         />
     </div>
 </div>
+
+<style>
+    .vim-like {
+        /*cursor:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23f97316'/%3E%3C/svg%3E")
+                10 10,
+            auto;*/
+        cursor: none;
+    }
+
+    /* Black text that is only visible under the cursor */
+    .vim-like::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        color: orange;
+        clip-path: circle(40px at var(--x, -100px) var(--y, -100px));
+        pointer-events: none;
+        transition: clip-path 0.05s linear;
+    }
+</style>
+
+<script>
+    const el = document.querySelector(".vim-like") as HTMLElement | null;
+    if (el) {
+        el.addEventListener("mousemove", (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            el.style.setProperty("--x", `${x}px`);
+            el.style.setProperty("--y", `${y}px`);
+        });
+
+        el.addEventListener("mouseleave", () => {
+            el.style.setProperty("--x", "-100px");
+            el.style.setProperty("--y", "-100px");
+        });
+    }
+</script>
