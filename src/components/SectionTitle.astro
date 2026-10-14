@@ -1,0 +1,22 @@
+---
+import { Plus } from "lucide-react";
+
+interface Props {
+    label: string;
+    title?: string;
+}
+const { label, title } = Astro.props;
+---
+
+<div class="flex items-center gap-8">
+    <span class="font-mono py-6 flex gap-2 items-center text-muted-foreground text-nowrap text-xs">
+        <Plus className="size-2" />
+        {label}
+    </span>
+    <div class="relative flex items-center w-full">
+        <div class="h-px w-full bg-[linear-gradient(to_right,transparent,var(--border)_15%,var(--border)_85%,transparent)]"></div>
+        <h1 class="italic relative top-4 bg-background sm:block hidden text-5xl md:text-7xl font-bold">
+            {title ? title : undefined}
+        </h1>
+    </div>
+</div>
