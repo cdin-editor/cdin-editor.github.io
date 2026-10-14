@@ -1,6 +1,7 @@
 ---
 import { navLinks } from "@/data/navlinks";
 import { ModeToggle } from "./ModeToggle";
+import MobileNav from "./MobileNav";
 ---
 
 <header class="sticky top-0 z-50 bg-background/80 backdrop-blur border-b supports-backdrop-filter:bg-background/60">
@@ -24,7 +25,7 @@ import { ModeToggle } from "./ModeToggle";
                     />
                 </a>
                 {navLinks.map((link) => (
-                    <li>
+                    <li class="md:block hidden">
                         <a
                             class="inline-block duration-150 opacity-60 hover:opacity-100 p-5 hover:bg-accent"
                             href={link.href}
@@ -34,7 +35,7 @@ import { ModeToggle } from "./ModeToggle";
                     </li>
                 ))}
             </div>
-            <div class="flex items-stretch">
+            <div class="md:flex items-stretch hidden">
                 <li class="flex">
                     <ModeToggle client:visible />
                 </li>
@@ -55,6 +56,9 @@ import { ModeToggle } from "./ModeToggle";
                     </a>
                 </li>
             </div>
+            <li class="md:hidden flex">
+                <MobileNav client:visible />
+            </li>
         </ul>
     </nav>
 </header>
