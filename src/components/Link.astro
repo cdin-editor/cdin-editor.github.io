@@ -1,0 +1,32 @@
+---
+import { Button } from "./ui/button";
+import type { LucideIcon } from "lucide-react";
+
+interface Props {
+    variant:
+        | "default"
+        | "outline"
+        | "secondary"
+        | "ghost"
+        | "destructive"
+        | "link"
+        | null
+        | undefined;
+    target?: string;
+    label: string;
+    href: string;
+    icon?: LucideIcon;
+}
+
+const { target, variant, label, href, icon: Icon } = Astro.props;
+---
+
+<Button
+    variant={variant}
+    className={`p-0 font-semibold text-xs h-auto tracking-widest`}
+>
+    <a target={target} href={href} class="px-6 py-4 flex items-center gap-2">
+        {Icon && <Icon size={18} />}
+        {label}
+    </a>
+</Button>

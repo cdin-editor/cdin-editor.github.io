@@ -27,7 +27,7 @@ export default function MobileNav() {
             />
             <SheetContent
                 side="right"
-                className="bg-background dark:bg-transparent backdrop-blur-2xl flex flex-col gap-0 p-0 border-x"
+                className="bg-background flex flex-col gap-0 p-0 border-x"
             >
                 <SheetHeader className="gap-0 p-0 space-y-0">
                     <SheetTitle className="sr-only">Navigation menu</SheetTitle>

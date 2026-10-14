@@ -1,9 +1,44 @@
 ---
-import { CodeXml } from "lucide-react";
+import { ArrowDownToLineIcon, CodeXmlIcon, GitBranchPlus } from "lucide-react";
+import Link from "@/components/Link.astro";
 ---
 
-<div class="flex items-center justify-center">
-    <div class="bg-foreground">
-        <CodeXml />
+<div class="flex flex-col items-center justify-center mt-16">
+    <div class="bg-foreground p-6 hover:scale-97 duration-200 active:scale-100">
+        <CodeXmlIcon
+            data-icon="inline-start"
+            className="text-background size-22"
+        />
+    </div>
+    <div class="flex mt-5 items-center font-serif font-semibold gap-2">
+        <span class="bg-chart-4/70 px-2 flex items-center justify-center">
+            01{" "}
+        </span>
+        <span class="text-2xl">
+            <span class="text-chart-4/70">C</span>dIN
+        </span>
+    </div>
+    <h1 class="lg:text-8xl sm:text-6xl text-5xl lg:max-w-2/3 text-center my-8 font-bold">
+        <span class="text-green-700">Vim-like</span> lightweight text editor...
+    </h1>
+    <p class="text-muted-foreground lg:max-w-1/2 sm:text-base text-sm text-center">
+        A blazing-fast, keyboard-driven text editor with built-in Vim-style
+        modal editing, powered by a minimal C core and fully customizable
+        through readable Lua.
+    </p>
+    <div class="mt-5 flex flex-wrap justify-center items-center gap-4">
+        <Link
+            href="/download"
+            label="DOWNLOAD EDITOR"
+            icon={ArrowDownToLineIcon}
+            variant="default"
+        />
+        <Link
+            href="https://github.com/cdin-editor"
+            label="JOIN THE ORGANIZATION"
+            icon={GitBranchPlus}
+            variant="outline"
+            target="_blank"
+        />
     </div>
 </div>
