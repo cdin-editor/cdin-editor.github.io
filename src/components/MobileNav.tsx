@@ -43,7 +43,7 @@ export default function MobileNav() {
                 </SheetHeader>
 
                 <nav className="flex flex-col border-t border-border">
-                    {navLinks.map((link) => (
+                    {navLinks.map((link, i) => (
                         <SheetClose
                             key={link.href}
                             render={
@@ -55,7 +55,7 @@ export default function MobileNav() {
                         >
                             <span className="font-medium">{link.title}</span>
                             <span className="font-mono text-[10px] tracking-widest text-muted-foreground group-hover:text-foreground">
-                                {link.href === "/" ? "~" : `~${link.href}`}
+                                0{i + 1}
                             </span>
                         </SheetClose>
                     ))}
