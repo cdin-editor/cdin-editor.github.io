@@ -8,15 +8,12 @@ interface Props {
 const { label, title } = Astro.props;
 ---
 
-<div class="flex items-center gap-8">
+<div class="flex items-center relative justify-between border-b sm:px-6 px-4 gap-8">
+    <Plus className="size-4 absolute left-[-9.4px] bottom-[-9.4px]" />
     <span class="font-mono py-6 flex gap-2 items-center text-muted-foreground text-nowrap text-xs">
-        <Plus className="size-2" />
         {label}
     </span>
-    <div class="relative flex items-center w-full">
-        <div class="h-px w-full bg-[linear-gradient(to_right,transparent,var(--border)_15%,var(--border)_85%,transparent)]"></div>
-        <h1 class="italic relative top-4 bg-background sm:block hidden text-6xl md:text-7xl font-bold">
-            {title ? title : undefined}
-        </h1>
-    </div>
+    <h1 class="italic absolute sm:block right-0 pr-10 top-10 bg-linear-to-l from-background to-transparent hidden text-6xl md:text-7xl font-bold">
+        {title ? title : undefined}
+    </h1>
 </div>
