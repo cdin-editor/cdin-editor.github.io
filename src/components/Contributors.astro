@@ -9,19 +9,23 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import type { Contributor } from "../types/github";
+import backup from "../data/contributors.json";
 import Link from "./Link.astro";
 import { GitCommit } from "lucide-react";
 
-export const contributors = await (async () => {
+// ponytail: JSON seed from live API; refresh by hand when roster changes
+export const contributors = await (async (): Promise<Contributor[]> => {
     try {
-        return (
-            await fetch(
-                "https://api.github.com/repos/cdin-editor/cdin/contributors",
-            )
-        ).json() as Promise<Contributor[]>;
+        const res = await fetch(
+            "https://api.github.com/repos/cdin-editor/cdin/contributors",
+        );
+        const data = await res.json();
+        return res.ok && Array.isArray(data) && data.length
+            ? data
+            : (backup as Contributor[]);
     } catch (e) {
         console.error("Failed to fetch contributors:", e);
-        return [];
+        return backup as Contributor[];
     }
 })();
 ---
@@ -43,35 +47,9 @@ export const contributors = await (async () => {
                 label="CONTRIBUTE TO PROJECT"
             />
         </div>
-        <div class="col-span-12 md:col-span-8 grid grid-cols-1 divide-x sm:grid-cols-2 lg:grid-cols-5">
-            {contributors.slice(0, 5).map((contributor) => (
-                <Card className="bg-transparent hover:bg-accent/40 duration-200 ring-0 h-full">
-                    <CardHeader>
-                        <CardTitle>
-                            <img
-                                src={contributor.avatar_url}
-                                alt={contributor.login}
-                                class="w-14 rounded-full! aspect-square"
-                            />
-                        </CardTitle>
-                        <CardDescription>{contributor.login}</CardDescription>
-                        <CardAction>
-                            <span class="text-xs text-muted-foreground">
-                                {contributor.contributions} commits
-                            </span>
-                        </CardAction>
-                    </CardHeader>
-                    <CardContent>
-                        <a
-                            href={contributor.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-1 focus-visible:outline-ring"
-                        >
-                            View profile
-                        </a>
-                    </CardContent>
-                </Card>
+        <div class="col-span-12 md:col-span-8 grid divide-x lg:grid-cols-12 lg:grid-rows-12">
+            {contributors.map((contributor) => (
+                <div>hi</div>
             ))}
         </div>
     </div>
