@@ -1,0 +1,20 @@
+---
+import { FileWarningIcon, TriangleAlert } from "lucide-react";
+import Link from "./sections/Link.astro";
+---
+
+<section class="bg-chart-3/10 p-3">
+    <p class="text-foreground/70 sm:text-sm justify-center text-xs flex sm:flex-row flex-col items-center gap-2">
+        <span class="flex items-center gap-2">
+            <TriangleAlert className="text-chart-3 size-5" /> Pre-release — this
+            is not a stable cdin.
+        </span>
+        <a
+            class="sm:ml-2 underline duration-150 hover:text-primary"
+            href="https://github.com/cdin-editor/cdin/issues"
+            target="_blank"
+        >
+            Report any bug or feature to add
+        </a>
+    </p>
+</section>
