@@ -40,15 +40,15 @@ import Footer from "@/components/layout/footer.astro";
         <meta name="generator" content={Astro.generator} />
         <title>cdin</title>
     </head>
-    <body class="min-h-dvh flex flex-col">
-        <main class="max-w-[1900px] mx-auto flex flex-1 flex-col w-full">
-            <Navbar />
-            <div class="px-2 md:px-10 flex flex-1 flex-col w-full">
+    <body class="min-h-dvh overflow-x-hidden flex flex-col">
+        <Navbar />
+        <main class="max-w-7xl mx-auto flex px-2 md:px-8 flex-1 flex-col w-full">
+            <div class="flex flex-1 flex-col w-full">
                 <div class="border-x flex flex-1 w-full h-full">
                     <slot />
                 </div>
             </div>
-            <Footer />
         </main>
+        <Footer />
     </body>
 </html>
