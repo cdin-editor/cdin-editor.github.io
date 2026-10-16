@@ -1,5 +1,62 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Link from "@/components/sections/Link.astro";
+import { BookOpenText, ShuffleIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { mergeClassNames } from "@base-ui/react";
 ---
 
-<BaseLayout>about</BaseLayout>
+<BaseLayout>
+    <section class="w-full">
+        <div class="grid grid-cols-10 border-b items-center">
+            <div class="col-span-10 lg:col-span-5 py-10 px-6 border-b lg:border-b-0">
+                <span class="font-thin text-xs text-muted-foreground">
+                    CHOOSE 0.1%
+                </span>
+                <h1 class="my-6 lg:text-6xl font-semibold sm:font-bold text-4xl">
+                    <span class="text-muted-foreground">C</span> core, <br />{" "}
+                    everything else <span class="text-indigo-700">Lua</span>.
+                </h1>
+                <p class="text-sm text-muted-foreground mb-5">
+                    cdin is a small, fast, keyboard-driven text editor with
+                    vim-style modal editing on by default. The core is written
+                    in C; everything else is Lua you can actually read, change,
+                    and recompile-free.
+                </p>
+                <Link
+                    href="/docs"
+                    label="Learn more"
+                    variant={`default`}
+                    aTagClassName="p-4"
+                    icon={BookOpenText}
+                />
+            </div>
+            <div class="col-span-10 lg:col-span-5 relative overflow-hidden lg:border-l">
+                <img
+                    src="/cdin-icons/webp/cdin-glow-transparent-1024.webp"
+                    width="1980"
+                    height="1080"
+                    alt=""
+                />
+                <img
+                    src="/pattern-light.svg"
+                    height="1080"
+                    width="1980"
+                    alt="bg-pattern"
+                    class="absolute top-0 right-0 left-0 w-full h-full aspect-square scale-[3] dark:invert"
+                />
+                <Button
+                    client:visible
+                    className="absolute bg-background! hover:bg-foreground! hover:text-primary-foreground border-foreground dark:border-white top-5 right-5"
+                    size={"icon-lg"}
+                    variant={`outline`}
+                >
+                    <ShuffleIcon />
+                </Button>
+            </div>
+        </div>
+        <div>
+            <h1 class="h-300">hi</h1>
+        </div>
+    </section>
+</BaseLayout>
