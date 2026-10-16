@@ -1,9 +1,14 @@
 ---
 import Philosophy from "./Philosophy.astro";
 import Contributors from "./Contributors.astro";
+import { PlusIcon } from "lucide-react";
 ---
 
-<section class="mt-8 border-y">
+<section class="mt-8 relative border-y">
+    <PlusIcon className="absolute size-4 left-[-9.4px] top-[-9.4px]" />
+    <PlusIcon className="absolute size-4 right-[-9.4px] top-[-9.4px]" />
+    <PlusIcon className="absolute size-4 right-[-9.4px] bottom-[-9.4px]" />
+    <PlusIcon className="absolute size-4 left-[-9.4px] bottom-[-9.4px]" />
     <div class="grid grid-cols-4 h-10 border-b">
         {Array(4)
             .fill(null)
