@@ -1,5 +1,5 @@
 export async function getRelease(): Promise<{ tag_name: string }> {
-    const DEFAULT_TAG = "0.2";
+    const DEFAULT_TAG = "v0.2";
     try {
         const res = await fetch(
             "https://api.github.com/repos/cdin-editor/cdin/releases/latest",

@@ -3,9 +3,11 @@ import { navLinks } from "@/data/navlinks";
 import { ModeToggle } from "./ModeToggle";
 import MobileNav from "./MobileNav";
 import Link from "../sections/Link.astro";
-import { getRelease } from "@/lib/getRelease";
 
+import { getRelease } from "@/lib/getRelease";
 const { tag_name } = await getRelease();
+
+const { url } = Astro;
 ---
 
 <header class="sticky border-b border-x top-0 z-50 bg-background">
@@ -24,7 +26,7 @@ const { tag_name } = await getRelease();
                 {navLinks.map((link) => (
                     <li class="md:block hidden">
                         <a
-                            class="inline-block duration-150 opacity-60 hover:opacity-100 p-5 hover:bg-accent"
+                            class={`inline-block duration-150 opacity-60 hover:opacity-100 hover:bg-accent/40 p-5 ${link.href === url.pathname ? "text-primary opacity-100" : ""}`}
                             href={link.href}
                         >
                             {link.title}
@@ -38,7 +40,7 @@ const { tag_name } = await getRelease();
                         label={tag_name}
                         href="https://github.com/cdin-editor/cdin/releases"
                         variant={`ghost`}
-                        buttonClassName="m-0 h-full "
+                        buttonClassName="m-0 h-full border-0 ring-0 hover:bg-accent/40"
                         aTagClassName="m-0 h-full font-normal opacity-70 duration-150 hover:opacity-100"
                         target="_blank"
                     />
