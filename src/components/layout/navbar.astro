@@ -2,6 +2,10 @@
 import { navLinks } from "@/data/navlinks";
 import { ModeToggle } from "./ModeToggle";
 import MobileNav from "./MobileNav";
+import Link from "../sections/Link.astro";
+import { getRelease } from "@/lib/getRelease";
+
+const { tag_name } = await getRelease();
 ---
 
 <header class="sticky border-b border-x top-0 z-50 bg-background">
@@ -29,6 +33,16 @@ import MobileNav from "./MobileNav";
                 ))}
             </div>
             <div class="md:flex items-stretch hidden">
+                <li class="flex items-center justify-center">
+                    <Link
+                        label={tag_name}
+                        href="https://github.com/cdin-editor/cdin/releases"
+                        variant={`ghost`}
+                        buttonClassName="m-0 h-full "
+                        aTagClassName="m-0 h-full font-normal opacity-70 duration-150 hover:opacity-100"
+                        target="_blank"
+                    />
+                </li>
                 <li class="flex">
                     <ModeToggle client:visible />
                 </li>
