@@ -24,28 +24,31 @@ import Link from "../sections/Link.astro";
 ---
 
 <footer class="border-t">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {footerLinks.map((link) => (
-            <Link
-                label={link.label}
-                href={link.href}
-                variant={`ghost`}
-                buttonClassName="ring-0 border-0 lg:not-last:border-r text-cetner lg:not-last:border-r-border m-0 border-b-border border-b border-r-0 sm:odd:border-r sm:odd:border-r-border"
-                aTagClassName="font-normal text-xl w-full text-center flex items-center justify-center py-8"
-            />
-        ))}
-    </div>
-    <div class="p-4 text-center border-b md:text-sm text-xs">
-        <span class="text-primary/80">
-            © 2026{" "}
-            <a
-                class="hover:underline duration-150 text-muted-foreground/70 hover:text-chart-2"
-                href="https://github.com/cdin-editor/cdin/issues"
-                target="_blank"
-            >
-                cdin contributors
-            </a>
-            . Released under the GNU General Public License v3.0.
-        </span>
+    <div class="max-w-7xl border-x mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {footerLinks.map((link) => (
+                <Link
+                    target={link.external ? "_blank" : ""}
+                    label={link.label}
+                    href={link.href}
+                    variant={`ghost`}
+                    buttonClassName="ring-0 border-0 lg:not-last:border-r text-cetner lg:not-last:border-r-border m-0 border-b-border border-b border-r-0 sm:odd:border-r sm:odd:border-r-border"
+                    aTagClassName="font-normal text-xl w-full text-center flex items-center justify-center py-8"
+                />
+            ))}
+        </div>
+        <div class="p-4 text-center border-b md:text-sm text-xs">
+            <span class="text-primary/80">
+                © 2026{" "}
+                <a
+                    class="hover:underline duration-150 text-muted-foreground/70 hover:text-chart-2"
+                    href="https://github.com/cdin-editor/cdin/issues"
+                    target="_blank"
+                >
+                    cdin contributors
+                </a>
+                . Released under the GNU General Public License v3.0.
+            </span>
+        </div>
     </div>
 </footer>
