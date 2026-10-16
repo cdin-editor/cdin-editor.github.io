@@ -16,55 +16,32 @@ const philosophyContent = [
         desc: "You should be able to find the edit loop, understand what it does, and change it. Functions are short. Modules are small. There are no clever abstractions that require you to know the whole project before touching any of it.",
     },
 ];
-import {
-    Card,
-    CardAction,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "cn";
 ---
 
-<section class="my-8 border-y">
-    <div class="grid grid-cols-4 h-10 border-b">
-        {Array(4)
-            .fill(null)
-            .map(() => (
-                <div class="not-last:border-r duration-150 hover:bg-accent/40"></div>
-            ))}
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:divide-y-0 divide-x-0 divide-y sm:divide-x">
-        {philosophyContent.map((phil, i) => (
-            <Card
-                className={cn(
-                    "bg-transparent hover:bg-accent/40 dark:hover:bg-accent/20 ring-0",
-                    i === philosophyContent.length - 1 &&
-                        "sm:col-span-2 md:col-span-1",
-                )}
-            >
-                <!-- className="bg-transparent hover:bg-accent/40 dark:hover:bg-accent/20 ring-0"> -->
-                <CardHeader>
-                    <span class="font-mono text-muted-foreground mb-3">
-                        {phil.id}
-                    </span>
-                    <CardTitle className="font-mono font-bold tracking-tighter">
-                        {phil.title}
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p class="text-muted-foreground tracking-wide leading-6 font-mono text-sm">
-                        {phil.desc}
-                    </p>
-                </CardContent>
-            </Card>
-        ))}
-    </div>
-    <div class="grid grid-cols-5 h-10 border-t">
-        {Array(5)
-            .fill(null)
-            .map(() => (
-                <div class="not-last:border-r duration-150 hover:bg-accent/40"></div>
-            ))}
-    </div>
-</section>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:divide-y-0 divide-x-0 divide-y sm:divide-x">
+    {philosophyContent.map((phil, i) => (
+        <Card
+            className={cn(
+                "p-5 bg-transparent hover:bg-accent/40 dark:hover:bg-accent/20 ring-0",
+                i === philosophyContent.length - 1 &&
+                    "sm:col-span-2 md:col-span-1",
+            )}
+        >
+            <CardHeader>
+                <span class="font-mono text-muted-foreground mb-3">
+                    {phil.id}
+                </span>
+                <CardTitle className="font-mono font-bold tracking-tighter">
+                    {phil.title}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p class="text-muted-foreground tracking-wide leading-6 font-mono text-sm">
+                    {phil.desc}
+                </p>
+            </CardContent>
+        </Card>
+    ))}
+</div>
