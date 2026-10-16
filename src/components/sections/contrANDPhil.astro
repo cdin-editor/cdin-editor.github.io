@@ -1,0 +1,30 @@
+---
+import Philosophy from "./Philosophy.astro";
+import Contributors from "./Contributors.astro";
+---
+
+<section class="my-8 border-y">
+    <div class="grid grid-cols-4 h-10 border-b">
+        {Array(4)
+            .fill(null)
+            .map(() => (
+                <div class="not-last:border-r duration-150 hover:bg-accent/40"></div>
+            ))}
+    </div>
+    <Philosophy />
+    <div class="grid grid-cols-5 h-10 border-t">
+        {Array(5)
+            .fill(null)
+            .map(() => (
+                <div class="not-last:border-r duration-150 hover:bg-accent/40"></div>
+            ))}
+    </div>
+    <Contributors />
+    <div class="grid border-t grid-cols-4 h-10">
+        {Array(4)
+            .fill(null)
+            .map(() => (
+                <div class="not-last:border-r duration-150 hover:bg-accent/40"></div>
+            ))}
+    </div>
+</section>
