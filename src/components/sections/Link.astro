@@ -1,8 +1,11 @@
 ---
 import { Button } from "../ui/button";
+import { cn } from "cn";
 import type { LucideIcon } from "lucide-react";
 
 interface Props {
+    buttonClassName?: string;
+    aTagClassName?: string;
     variant:
         | "default"
         | "outline"
@@ -18,14 +21,26 @@ interface Props {
     icon?: LucideIcon;
 }
 
-const { target, variant, label, href, icon: Icon } = Astro.props;
+const {
+    buttonClassName,
+    aTagClassName,
+    target,
+    variant,
+    label,
+    href,
+    icon: Icon,
+} = Astro.props;
 ---
 
 <Button
     variant={variant}
-    className={`p-0 font-semibold text-xs h-auto tracking-widest`}
+    className={cn("p-0 font-semibold text-xs h-auto tracking-widest", buttonClassName)}
 >
-    <a target={target} href={href} class="px-6 py-4 flex items-center gap-2">
+    <a
+        target={target}
+        href={href}
+        class={cn("px-6 py-4 flex items-center gap-2", aTagClassName)}
+    >
         {Icon && <Icon size={18} />}
         {label}
     </a>
