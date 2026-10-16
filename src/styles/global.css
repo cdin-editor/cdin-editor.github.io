@@ -127,3 +127,10 @@
 * {
     border-radius: 0px;
 }
+
+.fira-code-style {
+    font-family: "Fira Code", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}

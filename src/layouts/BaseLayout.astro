@@ -36,11 +36,17 @@ import Footer from "@/components/layout/footer.astro";
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>cdin</title>
     </head>
-    <body class="min-h-dvh overflow-x-hidden flex flex-col">
+    <body class="min-h-dvh overflow-x-hidden flex flex-col fira-code-style">
         <Navbar />
         <main class="max-w-7xl mx-auto flex px-2 md:px-8 flex-1 flex-col w-full">
             <div class="flex flex-1 flex-col w-full">

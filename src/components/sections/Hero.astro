@@ -4,7 +4,7 @@ import Link from "@/components/sections/Link.astro";
 import SectionTitle from "../layout/SectionTitle.astro";
 ---
 
-<SectionTitle label="01 / CDIN" title="CDIN" />
+<SectionTitle label={`echo "INFO" >>`} title="CDIN" />
 <div class="flex flex-col px-2 md:px-4 items-center justify-center mt-16">
     <div class="bg-foreground p-6 hover:scale-97 duration-200 active:scale-100">
         <CodeXmlIcon
@@ -12,7 +12,7 @@ import SectionTitle from "../layout/SectionTitle.astro";
             className="text-background size-22"
         />
     </div>
-    <div class="flex mt-5 items-center font-serif font-semibold gap-2">
+    <div class="flex mt-5 items-center font-semibold gap-2">
         <span class="bg-chart-4/70 px-2 flex items-center justify-center">
             01{" "}
         </span>
@@ -20,14 +20,14 @@ import SectionTitle from "../layout/SectionTitle.astro";
             <span class="text-chart-4/70">C</span>dIN
         </span>
     </div>
-    <h1 class="lg:text-8xl sm:text-6xl text-5xl lg:max-w-2/3 text-center my-8 font-bold">
+    <h1 class="lg:text-7xl sm:text-6xl text-5xl lg:max-w-2/3 text-center my-8 font-bold">
         <span
             class="vim-like relative inline-block text-green-700"
             data-text="Vim-like"
         >
             Vim-like
         </span>{" "}
-        lightweight text editor...
+        lightweight text editor
     </h1>
     <p class="text-muted-foreground lg:max-w-1/2 sm:text-base text-sm text-center">
         A blazing-fast, keyboard-driven text editor with built-in Vim-style
