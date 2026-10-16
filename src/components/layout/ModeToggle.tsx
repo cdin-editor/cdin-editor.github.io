@@ -29,7 +29,7 @@ export function ModeToggle() {
 
     return (
         <Button
-            className="rounded-none h-full m-0 px-6 self-stretch ring-0 border-0 border-l border-border bg-transparent"
+            className="rounded-none h-full m-0 px-6 self-stretch ring-0 border-0 border-l border-border bg-transparent hover:bg-accent/40"
             onClick={() => {
                 if (theme === "dark") {
                     setThemeState("theme-light");

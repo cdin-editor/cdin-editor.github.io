@@ -36,7 +36,7 @@ export default function MobileNav() {
                     </SheetDescription>
                     <div className="flex items-center gap-2 px-6 py-4 border-b">
                         <Plus className="size-3 text-muted-foreground" />
-                        <span className="font-mono text-xs tracking-widest text-muted-foreground">
+                        <span className="text-xs tracking-widest text-muted-foreground">
                             CDIN
                         </span>
                     </div>
@@ -54,7 +54,7 @@ export default function MobileNav() {
                             }
                         >
                             <span className="font-medium">{link.title}</span>
-                            <span className="font-mono text-[10px] tracking-widest text-muted-foreground group-hover:text-foreground">
+                            <span className="text-[10px] tracking-widest text-muted-foreground group-hover:text-foreground">
                                 0{i + 1}
                             </span>
                         </SheetClose>
