@@ -41,7 +41,7 @@ export function FaqsTabs() {
                         key={i}
                         value={`item-${i}`}
                     >
-                        <AccordionTrigger className="lg:text-2xl sm:text-xl text-lg font-semibold">
+                        <AccordionTrigger className="lg:text-xl sm:text-lg text-base font-semibold">
                             {faq.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground text-xs sm:text-sm">
