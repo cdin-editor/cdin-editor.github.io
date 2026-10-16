@@ -1,0 +1,78 @@
+---
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import type { Contributor } from "../types/github";
+import Link from "./Link.astro";
+import { GitCommit } from "lucide-react";
+
+export const contributors = await (async () => {
+    try {
+        return (
+            await fetch(
+                "https://api.github.com/repos/cdin-editor/cdin/contributors",
+            )
+        ).json() as Promise<Contributor[]>;
+    } catch (e) {
+        console.error("Failed to fetch contributors:", e);
+        return [];
+    }
+})();
+---
+
+<section class="border-t">
+    <div class="grid grid-cols-12 divide-x">
+        <div class="col-span-12 md:col-span-4 p-8 space-y-4">
+            <p class="text-muted-foreground">
+                From bug fixes to new features—your input matters for cdin's
+                next release. Whether reporting issues, submitting patches, or
+                enhancing guides, you're essential to cdin's journey toward
+                becoming the ultimate editor.
+            </p>
+            <Link
+                variant={"outline"}
+                href="https://github.com/cdin-editor/cdin"
+                icon={GitCommit}
+                target="_blank"
+                label="CONTRIBUTE TO PROJECT"
+            />
+        </div>
+        <div class="col-span-12 md:col-span-8 grid grid-cols-1 divide-x sm:grid-cols-2 lg:grid-cols-5">
+            {contributors.slice(0, 5).map((contributor) => (
+                <Card className="bg-transparent hover:bg-accent/40 duration-200 ring-0 h-full">
+                    <CardHeader>
+                        <CardTitle>
+                            <img
+                                src={contributor.avatar_url}
+                                alt={contributor.login}
+                                class="w-14 rounded-full! aspect-square"
+                            />
+                        </CardTitle>
+                        <CardDescription>{contributor.login}</CardDescription>
+                        <CardAction>
+                            <span class="text-xs text-muted-foreground">
+                                {contributor.contributions} commits
+                            </span>
+                        </CardAction>
+                    </CardHeader>
+                    <CardContent>
+                        <a
+                            href={contributor.html_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-1 focus-visible:outline-ring"
+                        >
+                            View profile
+                        </a>
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    </div>
+</section>
