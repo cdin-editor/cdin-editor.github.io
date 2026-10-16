@@ -12,22 +12,21 @@ import type { Contributor } from "../../types/github";
 import backup from "../../data/contributors.json";
 import Link from "./Link.astro";
 import { GitCommit } from "lucide-react";
-
-// ponytail: JSON seed from live API; refresh by hand when roster changes
-export const contributors = await (async (): Promise<Contributor[]> => {
-    try {
-        const res = await fetch(
-            "https://api.github.com/repos/cdin-editor/cdin/contributors",
-        );
-        const data = await res.json();
-        return res.ok && Array.isArray(data) && data.length
-            ? data
-            : (backup as Contributor[]);
-    } catch (e) {
-        console.error("Failed to fetch contributors:", e);
-        return backup as Contributor[];
-    }
-})();
+//
+// export const contributors = await (async (): Promise<Contributor[]> => {
+//     try {
+//         const res = await fetch(
+//             "https://api.github.com/repos/cdin-editor/cdin/contributors",
+//         );
+//         const data = await res.json();
+//         return res.ok && Array.isArray(data) && data.length
+//             ? data
+//             : (backup as Contributor[]);
+//     } catch (e) {
+//         console.error("Failed to fetch contributors:", e);
+//         return backup as Contributor[];
+//     }
+// })();
 ---
 
 <section class="border-t">
@@ -48,9 +47,9 @@ export const contributors = await (async (): Promise<Contributor[]> => {
             />
         </div>
         <div class="col-span-12 md:col-span-8 grid divide-x lg:grid-cols-12 lg:grid-rows-12">
-            {contributors.map((contributor) => (
+            <!-- {contributors.map((contributor) => (
                 <div>hi</div>
-            ))}
+            ))} -->
         </div>
     </div>
 </section>
