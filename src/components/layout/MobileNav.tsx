@@ -1,6 +1,6 @@
 import { MenuIcon, Plus } from "lucide-react";
 import { navLinks } from "@/data/navlinks";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { ModeToggle } from "./ModeToggle";
 import {
     Sheet,
