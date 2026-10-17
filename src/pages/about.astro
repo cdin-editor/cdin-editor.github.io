@@ -1,9 +1,25 @@
 ---
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/sections/Link.astro";
 import { BookOpenText, ShuffleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { mergeClassNames } from "@base-ui/react";
+export const features = [
+    "Modal editing built in and on by default. Vim-style Normal / Insert / Visual modes work out of the box.",
+    "The codebase is meant to be readable. You should be able to find the edit loop, understand what it does, and change it. Functions are short. Modules are small. There are no clever abstractions that require you to know the whole project before touching any of it.",
+    "Features belong in plugins. The core does the minimum that every editor needs. Anything optional is in data/plugins/ where it can be read, copied, modified, or replaced without touching the core. This is how lite-xl approaches things too, and it works.",
+    "Startup time and memory use matter. The renderer only redraws what actually changed. Background tasks are coroutines, not threads. An idle cdin draws almost nothing and uses almost no CPU.",
+    "Everything is Lua — commands, keybindings, UI behavior, syntax highlighting — all plain Lua loaded from data/ at startup. No recompiling required.",
+    "Configurable through data/user/init.lua — plain Lua, no DSL. Change themes, keybindings, or any behavior you can imagine.",
+];
 ---
 
 <BaseLayout>
@@ -55,8 +71,32 @@ import type { mergeClassNames } from "@base-ui/react";
                 </Button>
             </div>
         </div>
-        <div>
-            <h1 class="h-300">hi</h1>
+        <div class="grid divide-x grid-cols-1 border-b">
+            {Array(1)
+                .fill(null)
+                .map(() => (
+                    <div class="h-10 duration-200 dark:hover:bg-accent/30 hover:bg-accent/40"></div>
+                ))}
         </div>
+        <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:divide-x divide-y lg:[&>*:nth-child(3)]:border-r-0">
+            {features.map((feat, i) => (
+                <Card className="ring-0 bg-transparent hover:bg-accent/50 dark:hover:bg-accent/20 duration-150 px-5 py-5 min-h-[245px] last:border-b">
+                    <CardHeader className="lg:text-xl opacity-80">
+                        0{i + 1}
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-muted-foreground">{feat}</p>
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+        <div class="grid divide-x grid-cols-1 border-b">
+            {Array(1)
+                .fill(null)
+                .map(() => (
+                    <div class="h-10 duration-200 dark:hover:bg-accent/30 hover:bg-accent/40"></div>
+                ))}
+        </div>
+        hi
     </section>
 </BaseLayout>

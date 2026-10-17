@@ -24,15 +24,13 @@ import { cn } from "cn";
     {philosophyContent.map((phil, i) => (
         <Card
             className={cn(
-                "p-5 bg-transparent hover:bg-accent/40 ring-0",
+                "p-5 bg-transparent hover:bg-accent/40 ring-0 duration-150",
                 i === philosophyContent.length - 1 &&
                     "sm:col-span-2 md:col-span-1",
             )}
         >
             <CardHeader>
-                <span class="text-muted-foreground mb-3">
-                    {phil.id}
-                </span>
+                <span class="text-muted-foreground mb-3">{phil.id}</span>
                 <CardTitle className="font-bold tracking-tighter">
                     {phil.title}
                 </CardTitle>
