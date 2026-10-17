@@ -20,6 +20,8 @@ export const features = [
     "Everything is Lua — commands, keybindings, UI behavior, syntax highlighting — all plain Lua loaded from data/ at startup. No recompiling required.",
     "Configurable through data/user/init.lua — plain Lua, no DSL. Change themes, keybindings, or any behavior you can imagine.",
 ];
+export const paragraph =
+    "cdin is for people who want a small, fast editor they can actually make their own. If you've used vim, the basics transfer directly. If you're curious how an editor works, the whole thing is readable and modifiable. If you just want a quick, quiet tool to open files and get out of the way, that works too.";
 ---
 
 <BaseLayout>
@@ -80,7 +82,7 @@ export const features = [
         </div>
         <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:divide-x divide-y lg:[&>*:nth-child(3)]:border-r-0">
             {features.map((feat, i) => (
-                <Card className="ring-0 bg-transparent hover:bg-accent/50 dark:hover:bg-accent/20 duration-150 px-5 py-5 min-h-[245px] last:border-b">
+                <Card className="ring-0 bg-transparent hover:bg-accent/50 dark:hover:bg-accent/20 duration-150 sm:px-5 sm:py-5 min-h-44.25 sm:min-h-61.2 last:border-b">
                     <CardHeader className="lg:text-xl opacity-80">
                         0{i + 1}
                     </CardHeader>
@@ -97,6 +99,14 @@ export const features = [
                     <div class="h-10 duration-200 dark:hover:bg-accent/30 hover:bg-accent/40"></div>
                 ))}
         </div>
-        hi
+        <div class="text-muted-foreground mt-4 sm:p-5 p-3 text-justify wrap-break-word flex">
+            <p class="text-wrap text-center justify-center flex flex-wrap gap-2 md:text-sm text-xs">
+                {paragraph.split(" ").map((word, i) => (
+                    <span class="hover:text-primary cursor-default duration-75">
+                        {word}
+                    </span>
+                ))}
+            </p>
+        </div>
     </section>
 </BaseLayout>
