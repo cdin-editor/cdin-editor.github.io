@@ -134,3 +134,8 @@
     font-weight: 500;
     font-style: normal;
 }
+
+html,
+body {
+    scroll-behavior: smooth;
+}
