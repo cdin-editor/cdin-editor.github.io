@@ -1,5 +1,154 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Link from "@/components/sections/Link.astro";
+import {
+    CodeXml,
+    DownloadIcon,
+    Maximize,
+    ShareIcon,
+    SquareArrowOutUpRight,
+    SquareArrowRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { size } from "astro:schema";
 ---
 
-<BaseLayout>download</BaseLayout>
+<BaseLayout>
+    <section class="flex flex-col w-full">
+        <div class="px-4 sm:px-6 flex flex-col items-center text-center py-14 sm:py-18">
+            <h1 class="lg:text-5xl sm:text-4xl text-3xl font-semibold tracking-tighter flex items-end">
+                Download <i class="font-serif font-normal ml-2">Cdin</i>{" "}
+                <span class="inline-block w-1.5 h-1.5 sm:h-2 sm:w-2 bg-foreground ml-1.5 relative -top-2 align-end" />
+            </h1>
+            <p class="text-muted-foreground mt-6">
+                Vim muscle memory, none of the weight. right on your desktop.
+            </p>
+            <div class="flex items-center mt-6 gap-2 flex-wrap">
+                <Link
+                    href="/"
+                    svg={
+                        <div class="grid grid-cols-2 gap-0.5">
+                            {Array(4)
+                                .fill(null)
+                                .map(() => (
+                                    <div class="p-1 bg-accent"></div>
+                                ))}
+                        </div>
+                    }
+                    label="DOWNLOAD FOR WINDOWS"
+                    variant={`default`}
+                />
+                <Link
+                    icon={CodeXml}
+                    label="SEE SOURCE"
+                    href="https://github.com/cdin-editor/cdin"
+                    variant={`outline`}
+                />
+            </div>
+            <span class="text-muted-foreground mt-4 text-xs font-thin">
+                <Button
+                    variant="ghost"
+                    className="p-0 bg-transparent! px-0 py-0 w-fit h-fit font-semibold text-xs tracking-widest"
+                >
+                    <span
+                        class="flex font-thin items-center gap-2 cursor-default select-none"
+                        aria-disabled="true"
+                    >
+                        FREE
+                    </span>
+                </Button>{" "}
+                -{" "}
+                <Link
+                    label="OPEN SOURCE"
+                    href="https://github.com/cdin-editor/cdin"
+                    variant={`ghost`}
+                    target="_blank"
+                    aTagClassName="p-0 m-0"
+                    buttonClassName="p-0 m-0 font-thin bg-transparent!"
+                />{" "}
+                -{" "}
+                <Link
+                    label="OTHER PLATFORMS"
+                    href="#platforms"
+                    variant={`ghost`}
+                    aTagClassName="p-0 m-0"
+                    buttonClassName="p-0 m-0 font-thin bg-transparent!"
+                />
+            </span>
+        </div>
+
+        <div class="flex items-center justify-between border-y px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150">
+            <span class="text-xs text-muted-foreground font-thin">
+                PREVIEW * CDIN CODE
+            </span>
+        </div>
+
+        <div class="relative">
+            <Button
+                client:visible
+                className="absolute border-white! active:scale-98 bottom-5 right-5 bg-transparent hover:bg-white! text-white hover:text-black!"
+                size={"icon-lg"}
+                variant={`outline`}
+            >
+                <Maximize />
+            </Button>
+            <img
+                src="/CDIN-CODE.webp"
+                alt="Cdin code preview"
+                width="1980"
+                height="1080"
+                class="w-full aspect-video"
+            />
+        </div>
+
+        <div class="flex items-center justify-between border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
+            <span
+                id="platforms"
+                class="text-xs text-muted-foreground font-thin"
+            >
+                PLATFORMS
+            </span>
+            <span class="text-xs text-muted-foreground font-thin">
+                REQUIREMENT - ELECTRICITY (optional)
+            </span>
+        </div>
+
+        <div class="grid divide-y lg:divide-x grid-cols-1 lg:grid-cols-2">
+            <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
+                <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
+                    <img
+                        src="/linux.svg"
+                        alt="linux"
+                        width="1980"
+                        height="1080"
+                        class="w-8 aspect-square dark:invert"
+                    />
+                    LINUX (deb)
+                </h5>
+                <Link
+                    href="/"
+                    icon={DownloadIcon}
+                    label="DOWNLOAD FOR LINUX"
+                    buttonClassName="m-0"
+                    variant={`default`}
+                />
+            </div>
+            <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
+                <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
+                    <CodeXml />
+                    SOURCE
+                </h5>
+                <Link
+                    href="/"
+                    icon={SquareArrowOutUpRight}
+                    label="BUILT FROM SOURCE"
+                    buttonClassName="m-0"
+                    variant={`default`}
+                />
+            </div>
+            <div class="lg:col-span-2 text-muted-foreground text-xs hover:text-primary duration-150 p-4 text-center">
+                macOS (and other linux distros) coming soon
+            </div>
+        </div>
+    </section>
+</BaseLayout>

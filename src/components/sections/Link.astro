@@ -19,6 +19,7 @@ interface Props {
     label: string;
     href: string;
     icon?: LucideIcon;
+    svg?: HTMLDivElement;
 }
 
 const {
@@ -29,12 +30,16 @@ const {
     label,
     href,
     icon: Icon,
+    svg,
 } = Astro.props;
 ---
 
 <Button
     variant={variant}
-    className={cn("p-0 font-semibold text-xs h-auto tracking-widest", buttonClassName)}
+    className={cn(
+        "p-0 font-semibold text-xs h-auto tracking-widest",
+        buttonClassName,
+    )}
 >
     <a
         target={target}
@@ -42,6 +47,7 @@ const {
         class={cn("px-6 py-4 flex items-center gap-2", aTagClassName)}
     >
         {Icon && <Icon size={18} />}
+        {svg}
         {label}
     </a>
 </Button>
