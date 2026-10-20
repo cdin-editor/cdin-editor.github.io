@@ -4,7 +4,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 <BaseLayout>
     <section class="grid grid-cols-12 w-full">
-        <div class="md:col-span-3 md:flex hidden">navs</div>
-        <div class="md:col-span-9 col-span-12">content</div>
+        <div class="md:col-span-3 md:block hidden relative">
+            <div class="sticky top-16.25 left-0 right-0 z-60">nav</div>
+        </div>
+
+        <div class="md:col-span-9 col-span-12 h-300 border-l">hi</div>
     </section>
 </BaseLayout>
