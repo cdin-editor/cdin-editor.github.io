@@ -8,9 +8,9 @@ import {
     ShareIcon,
     SquareArrowOutUpRight,
     SquareArrowRight,
+    X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { size } from "astro:schema";
 ---
 
 <BaseLayout>
@@ -83,9 +83,11 @@ import type { size } from "astro:schema";
             </span>
         </div>
 
-        <div class="relative">
+        <div id="preview" class="relative">
             <Button
                 client:visible
+                id="preview-open"
+                aria-label="View preview larger"
                 className="absolute border-white! active:scale-98 bottom-5 right-5 bg-transparent hover:bg-white! text-white hover:text-black!"
                 size={"icon-lg"}
                 variant={`outline`}
@@ -100,6 +102,54 @@ import type { size } from "astro:schema";
                 class="w-full aspect-video"
             />
         </div>
+
+        <dialog
+            id="preview-dialog"
+            aria-label="Cdin code preview"
+            class="m-auto border-0 bg-transparent p-0 max-w-[92vw] max-h-[92vh] overflow-visible"
+        >
+            <div class="relative">
+                <Button
+                    client:visible
+                    id="preview-close"
+                    aria-label="Close preview"
+                    variant={`secondary`}
+                    size={"icon-lg"}
+                    className="absolute top-6 right-6 z-10 scale-125"
+                >
+                    <X />
+                </Button>
+                <img
+                    src="/CDIN-CODE.webp"
+                    alt="Cdin code preview"
+                    class="max-w-[92vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg"
+                />
+            </div>
+        </dialog>
+
+        <script>
+            const openBtn = document.getElementById("preview-open");
+            const closeBtn = document.getElementById("preview-close");
+            const dialog = document.getElementById("preview-dialog");
+
+            openBtn?.addEventListener("click", () => {
+                if (dialog instanceof HTMLDialogElement) dialog.showModal();
+            });
+            closeBtn?.addEventListener("click", () => {
+                if (dialog instanceof HTMLDialogElement) dialog.close();
+            });
+            dialog?.addEventListener("click", (e) => {
+                if (e.target === dialog && dialog instanceof HTMLDialogElement)
+                    dialog.close();
+            });
+        </script>
+
+        <style>
+            #preview-dialog::backdrop {
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(2px);
+            }
+        </style>
 
         <div class="flex items-center justify-between border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
             <span
