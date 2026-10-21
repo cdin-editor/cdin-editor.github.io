@@ -24,7 +24,19 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
 <BaseLayout>
     <section class="grid grid-cols-12 w-full">
         <div class="md:col-span-3 md:block hidden relative overflow-x-clip">
-            <div class="sticky top-16.25 left-0 right-0 z-60">
+            <div class="sticky top-16.25 left-0 right-0 z-60 py-4">
+                <div class="flex flex-col pb-1">
+                    <span class="px-6 py-2 text-xs font-semibold tracking-widest uppercase">
+                        Welcome
+                    </span>
+                    <Link
+                        href={`/docs`}
+                        label={`welcome`}
+                        variant={`link`}
+                        buttonClassName={`text-start p-0 m-0 break-words-all`}
+                        aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `/docs` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
+                    />
+                </div>
                 {sections.map((section) => (
                     <div class="flex flex-col">
                         <span class="px-6 py-2 text-xs font-semibold tracking-widest uppercase">
@@ -44,7 +56,7 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
             </div>
         </div>
 
-        <article class="prose dark:prose-invert md:col-span-9 col-span-12 border-l p-6 max-w-full">
+        <article class="prose dark:prose-invert md:col-span-9 col-span-12 border-l p-6 max-w-full overflow-x-hidden">
             <slot />
         </article>
     </section>
