@@ -1,8 +1,3 @@
----
-title: docs
-slug: docs/docsss
----
-
 # Documentation
 
 Ten pages. Most people need two of them.
