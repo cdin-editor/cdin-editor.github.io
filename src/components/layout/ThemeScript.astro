@@ -1,0 +1,38 @@
+<script is:inline>
+    (() => {
+        const root = document.documentElement;
+
+        const readStoredTheme = () => {
+            try {
+                return localStorage.getItem("theme");
+            } catch {
+                return null;
+            }
+        };
+
+        const applyTheme = (isDark) => {
+            root.classList.toggle("dark", isDark);
+            root.style.colorScheme = isDark ? "dark" : "light";
+        };
+
+        const stored = readStoredTheme();
+        applyTheme(
+            stored === "dark" ||
+                (stored !== "light" &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+
+        try {
+            new MutationObserver(() => {
+                const isDark = root.classList.contains("dark");
+                root.style.colorScheme = isDark ? "dark" : "light";
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+            }).observe(root, {
+                attributes: true,
+                attributeFilter: ["class"],
+            });
+        } catch {
+            // localStorage unavailable (private mode, sandboxed iframe)
+        }
+    })();
+</script>
