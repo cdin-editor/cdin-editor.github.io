@@ -9,6 +9,9 @@ const { tag_name } = await getRelease();
 
 const { url } = Astro;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
+
+const isActive = (href: string) =>
+    currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <header class="sticky border-b border-x top-0 z-50 bg-background">
@@ -27,7 +30,7 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
                 {navLinks.map((link) => (
                     <li class="md:block hidden">
                         <a
-                            class={`inline-block duration-150 opacity-60 hover:opacity-100 hover:bg-accent/40 p-5 ${link.href === currentPath ? "text-primary opacity-100" : ""}`}
+                            class={`inline-block duration-150 opacity-60 hover:opacity-100 hover:bg-accent/40 p-5 ${isActive(link.href) ? "text-primary opacity-100" : ""}`}
                             href={link.href}
                         >
                             {link.title}
