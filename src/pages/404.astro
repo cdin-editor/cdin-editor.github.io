@@ -1,2 +1,30 @@
-not found
-<a href="/">home</a>
+---
+import NotfoundLayout from "@/layouts/NotfoundLayout.astro";
+import Link from "@/components/sections/Link.astro";
+import { Card } from "@/components/ui/card";
+
+const { url } = Astro;
+const currentPath = url.pathname.replace(/\/$/, "") || "/";
+---
+
+<NotfoundLayout>
+    <section class="flex flex-col items-center divide-x divide-y justify-center w-full text-center md:p-0 py-10 px-4">
+        <Card className="p-10 bg-transparent text-center flex flex-col items-center ring-0">
+            <h1 class="lg:text-7xl sm:text-6xl text-5xl sm:font-bold font-semibold">
+                404
+            </h1>
+            <h3 class="lg:text-3xl sm:text-2xl text-xl font-semibold">
+                Page not found: {currentPath}
+            </h3>
+            <p class="text-muted-foreground sm:text-sm text-xs">
+                It might be deleted or might never exist.
+            </p>
+            <Link
+                label="BACK HOME"
+                href="/"
+                variant={`default`}
+                buttonClassName="w-fit"
+            />
+        </Card>
+    </section>
+</NotfoundLayout>
