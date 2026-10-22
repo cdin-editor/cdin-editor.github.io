@@ -81,7 +81,7 @@ the whole of what cdin guarantees an extension, and therefore the whole of what
 cdin-x is allowed to assume. If something is not in there, it is not a contract,
 and changing it is a breaking change.
 
-**[CONTRIBUTING.md](/docs/../CONTRIBUTING.md)** — the conventions and the PR checklist.
+**[CONTRIBUTING.md](/docs/others/contributing)** — the conventions and the PR checklist.
 **[AGENTS.md](/docs/../AGENTS.md)** — the same, for agents: which suite to run after
 touching what.
 
