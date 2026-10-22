@@ -5,6 +5,7 @@ import {
     CodeXml,
     DownloadIcon,
     Maximize,
+    PlusIcon,
     ShareIcon,
     SquareArrowOutUpRight,
     SquareArrowRight,
@@ -25,7 +26,7 @@ import { Button } from "@/components/ui/button";
             </p>
             <div class="flex items-center mt-6 gap-2 flex-wrap">
                 <Link
-                    href="/"
+                    href="https://github.com/cdin-editor/cdin/releases/download/v0.2.1-beta.9/cdin-0.2.1-beta.9-windows-setup.exe"
                     svg={
                         <div class="grid grid-cols-2 gap-0.5">
                             {Array(4)
@@ -77,30 +78,36 @@ import { Button } from "@/components/ui/button";
             </span>
         </div>
 
-        <div class="flex items-center justify-between border-y px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150">
-            <span class="text-xs text-muted-foreground font-thin">
-                PREVIEW * CDIN CODE
-            </span>
-        </div>
+        <div class="relative">
+            <!-- <PlusIcon className="absolute size-4 left-[-9.4px] top-[-9.4px]" /> -->
+            <!-- <PlusIcon className="absolute size-4 right-[-9.4px] top-[-9.4px]" /> -->
+            <div class="flex items-center justify-between border-y px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150">
+                <span class="text-xs text-muted-foreground font-thin">
+                    PREVIEW * CDIN CODE
+                </span>
+            </div>
 
-        <div id="preview" class="relative">
-            <Button
-                client:visible
-                id="preview-open"
-                aria-label="View preview larger"
-                className="absolute border-white! active:scale-98 bottom-5 right-5 bg-transparent hover:bg-white! text-white hover:text-black!"
-                size={"icon-lg"}
-                variant={`outline`}
-            >
-                <Maximize />
-            </Button>
-            <img
-                src="/CDIN-CODE.webp"
-                alt="Cdin code preview"
-                width="1980"
-                height="1080"
-                class="w-full aspect-video"
-            />
+            <div id="preview" class="relative">
+                <Button
+                    client:visible
+                    id="preview-open"
+                    aria-label="View preview larger"
+                    className="absolute border-white! active:scale-98 bottom-5 right-5 bg-transparent hover:bg-white! text-white hover:text-black!"
+                    size={"icon-lg"}
+                    variant={`outline`}
+                >
+                    <Maximize />
+                </Button>
+                <img
+                    src="/CDIN-CODE.webp"
+                    alt="Cdin code preview"
+                    width="1980"
+                    height="1080"
+                    class="w-full aspect-video"
+                />
+            </div>
+            <!-- <PlusIcon className="absolute size-4 left-[-9.4px] bottom-[-9.4px]" /> -->
+            <!-- <PlusIcon className="absolute size-4 right-[-9.4px] bottom-[-9.4px]" /> -->
         </div>
 
         <dialog
@@ -143,7 +150,6 @@ import { Button } from "@/components/ui/button";
                     dialog.close();
             });
         </script>
-
         <style>
             #preview-dialog::backdrop {
                 background: rgba(0, 0, 0, 0.8);
@@ -151,54 +157,58 @@ import { Button } from "@/components/ui/button";
             }
         </style>
 
-        <div class="flex items-center justify-between border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
-            <span
-                id="platforms"
-                class="text-xs text-muted-foreground font-thin"
-            >
-                PLATFORMS
-            </span>
-            <span class="text-xs text-muted-foreground font-thin">
-                REQUIREMENT - ELECTRICITY (optional)
-            </span>
-        </div>
+        <div class="relative">
+            <div class="flex items-center justify-between border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
+                <span
+                    id="platforms"
+                    class="text-xs text-muted-foreground font-thin"
+                >
+                    PLATFORMS
+                </span>
+                <span class="text-xs text-muted-foreground font-thin">
+                    REQUIREMENT - ELECTRICITY (optional)
+                </span>
+            </div>
 
-        <div class="grid divide-y lg:divide-x grid-cols-1 lg:grid-cols-2">
-            <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
-                <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
-                    <img
-                        src="/linux.svg"
-                        alt="linux"
-                        width="1980"
-                        height="1080"
-                        class="w-8 aspect-square dark:invert"
+            <div class="grid divide-y lg:divide-x grid-cols-1 lg:grid-cols-2">
+                <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
+                    <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
+                        <img
+                            src="/linux.svg"
+                            alt="linux"
+                            width="1980"
+                            height="1080"
+                            class="w-8 aspect-square dark:invert"
+                        />
+                        LINUX (deb)
+                    </h5>
+                    <Link
+                        href="https://github.com/cdin-editor/cdin/releases/download/v0.2.1-beta.9/cdin_0.2.1.beta.9_amd64.deb"
+                        icon={DownloadIcon}
+                        label="DOWNLOAD FOR LINUX"
+                        buttonClassName="m-0"
+                        variant={`default`}
                     />
-                    LINUX (deb)
-                </h5>
-                <Link
-                    href="/"
-                    icon={DownloadIcon}
-                    label="DOWNLOAD FOR LINUX"
-                    buttonClassName="m-0"
-                    variant={`default`}
-                />
+                </div>
+                <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
+                    <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
+                        <CodeXml />
+                        SOURCE
+                    </h5>
+                    <Link
+                        href="docs/guides/getting-started"
+                        icon={SquareArrowOutUpRight}
+                        label="BUILT FROM SOURCE"
+                        buttonClassName="m-0"
+                        variant={`default`}
+                    />
+                </div>
+                <div class="lg:col-span-2 text-muted-foreground text-xs hover:text-primary duration-150 p-4 text-center">
+                    macOS (and other linux distros) coming soon
+                </div>
             </div>
-            <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
-                <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
-                    <CodeXml />
-                    SOURCE
-                </h5>
-                <Link
-                    href="/"
-                    icon={SquareArrowOutUpRight}
-                    label="BUILT FROM SOURCE"
-                    buttonClassName="m-0"
-                    variant={`default`}
-                />
-            </div>
-            <div class="lg:col-span-2 text-muted-foreground text-xs hover:text-primary duration-150 p-4 text-center">
-                macOS (and other linux distros) coming soon
-            </div>
+            <!-- <PlusIcon className="absolute size-4 left-[-9.4px] bottom-[-9.4px]" /> -->
+            <!-- <PlusIcon className="absolute size-4 right-[-9.4px] bottom-[-9.4px]" /> -->
         </div>
     </section>
 </BaseLayout>
