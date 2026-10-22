@@ -1,43 +1,82 @@
 ---
-import {
-    Card,
-    CardAction,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import type { Contributor } from "../../types/github";
-import backup from "../../data/contributors.json";
+import type { Contributor } from "@/types/github";
+import backup from "@/data/contributors.json";
 import Link from "./Link.astro";
 import { GitCommit } from "lucide-react";
-//
-// export const contributors = await (async (): Promise<Contributor[]> => {
-//     try {
-//         const res = await fetch(
-//             "https://api.github.com/repos/cdin-editor/cdin/contributors",
-//         );
-//         const data = await res.json();
-//         return res.ok && Array.isArray(data) && data.length
-//             ? data
-//             : (backup as Contributor[]);
-//     } catch (e) {
-//         console.error("Failed to fetch contributors:", e);
-//         return backup as Contributor[];
-//     }
-// })();
+import ContributorMap from "./ContributorMap.astro";
+import { buildContributorMap } from "@/lib/contributor-map";
+
+const contributors = await (async (): Promise<Contributor[]> => {
+    try {
+        const res = await fetch(
+            "https://api.github.com/repos/cdin-editor/cdin/contributors?per_page=100",
+        );
+        const data = await res.json();
+        return res.ok && Array.isArray(data) && data.length
+            ? (data as Contributor[])
+            : (backup as Contributor[]);
+    } catch (e) {
+        console.error("Failed to fetch contributors:", e);
+        return backup as Contributor[];
+    }
+})();
+
+const people = [...contributors].sort(
+    (a, b) => b.contributions - a.contributions,
+);
+
+const totalContributions = people.reduce(
+    (total, contributor) => total + contributor.contributions,
+    0,
+);
+
+const contributorLabel = people.length === 1 ? "contributor" : "contributors";
+const commitLabel = totalContributions === 1 ? "commit" : "commits";
+const formatCount = (value: number) => value.toLocaleString("en-US");
+
+// Separate reference ratios keep the smallest tiles usable on phones.
+const desktopTiles = buildContributorMap(people, {
+    width: 900,
+    height: 600,
+});
+const mobileTiles = buildContributorMap(people, {
+    width: 600,
+    height: 800,
+});
 ---
 
-<section class="border-t">
-    <div class="grid grid-cols-12 divide-x">
-        <div class="col-span-12 md:col-span-4 p-8 space-y-4">
+<section class="border-t" aria-labelledby="contributors-heading">
+    <h2 id="contributors-heading" class="sr-only">
+        Contributors
+    </h2>
+    <div class="grid grid-cols-12 md:divide-x">
+        <div class="col-span-12 flex flex-col justify-center gap-6 p-6 md:col-span-4 md:p-8">
             <p class="text-muted-foreground">
                 From bug fixes to new features—your input matters for cdin's
                 next release. Whether reporting issues, submitting patches, or
                 enhancing guides, you're essential to cdin's journey toward
                 becoming the ultimate editor.
             </p>
+            <div class="-mx-6 border-y md:-mx-8">
+                <dl class="divide-y">
+                    <div class="flex items-center justify-between gap-4 px-6 py-3 md:px-8">
+                        <dt class="text-[11px] leading-5 text-muted-foreground sm:text-xs">
+                            {contributorLabel}
+                        </dt>
+                        <dd class="text-2xl font-bold tracking-tighter tabular-nums">
+                            {formatCount(people.length)}
+                        </dd>
+                    </div>
+                    <div class="flex items-center justify-between gap-4 px-6 py-3 md:px-8">
+                        <dt class="text-[11px] leading-5 text-muted-foreground sm:text-xs">
+                            {commitLabel}
+                        </dt>
+                        <dd class="text-2xl font-bold tracking-tighter tabular-nums">
+                            {formatCount(totalContributions)}
+                        </dd>
+                    </div>
+                </dl>
+            </div>
             <Link
                 variant={"outline"}
                 href="https://github.com/cdin-editor/cdin"
@@ -46,10 +85,17 @@ import { GitCommit } from "lucide-react";
                 label="CONTRIBUTE TO PROJECT"
             />
         </div>
-        <div class="col-span-12 md:col-span-8 grid divide-x lg:grid-cols-12 lg:grid-rows-12">
-            <!-- {contributors.map((contributor) => (
-                <div>hi</div>
-            ))} -->
+        <div class="col-span-12 flex flex-col md:col-span-8">
+            <ContributorMap
+                tiles={mobileTiles}
+                labelledBy="contributors-heading"
+                class="aspect-3/4 md:hidden"
+            />
+            <ContributorMap
+                tiles={desktopTiles}
+                labelledBy="contributors-heading"
+                class="hidden md:block md:flex-1"
+            />
         </div>
     </div>
 </section>
