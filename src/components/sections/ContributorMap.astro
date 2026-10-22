@@ -1,0 +1,87 @@
+---
+import type { ContributorTile } from "@/lib/contributor-map";
+
+interface Props {
+    tiles: ContributorTile[];
+    labelledBy?: string;
+    class?: string;
+}
+
+const { tiles, labelledBy, class: className } = Astro.props;
+
+const contributionLabel = (count: number) =>
+    `${count} ${count === 1 ? "contribution" : "contributions"}`;
+
+const positionStyle = (tile: ContributorTile) =>
+    [
+        `left:calc(${tile.x.toFixed(4)}% + 1px)`,
+        `top:calc(${tile.y.toFixed(4)}% + 1px)`,
+        `width:calc(${tile.w.toFixed(4)}% - 2px)`,
+        `height:calc(${tile.h.toFixed(4)}% - 2px)`,
+    ].join("; ");
+---
+
+<ul
+    aria-labelledby={labelledBy}
+    class:list={[
+        "contributor-map relative m-0 list-none bg-border p-0",
+        className,
+    ]}
+>
+    {tiles.map((tile) => (
+        <li class="absolute focus-within:z-20" style={positionStyle(tile)}>
+            <a
+                href={tile.contributor.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${tile.contributor.login}, ${contributionLabel(tile.contributor.contributions)}`}
+                class="relative block h-full w-full overflow-hidden bg-muted"
+            >
+                <img
+                    src={tile.contributor.avatar_url}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                    class="h-full w-full object-cover"
+                />
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .contributor-map a {
+        outline: none;
+    }
+
+    .contributor-map a img {
+        filter: grayscale(1);
+        transform: scale(1);
+        transition:
+            filter 200ms ease-out,
+            transform 200ms ease-out;
+    }
+
+    .contributor-map a:hover img,
+    .contributor-map a:focus-visible img {
+        filter: grayscale(0);
+        /*transform: scale(1.04);*/
+    }
+
+    .contributor-map a:focus-visible {
+        outline: 2px solid var(--foreground);
+        outline-offset: -2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .contributor-map a img {
+            transition: none;
+        }
+
+        .contributor-map a:hover img,
+        .contributor-map a:focus-visible img {
+            transform: none;
+        }
+    }
+</style>
