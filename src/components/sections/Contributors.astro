@@ -6,18 +6,31 @@ import { GitCommit } from "lucide-react";
 import ContributorMap from "./ContributorMap.astro";
 import { buildContributorMap } from "@/lib/contributor-map";
 
+const fallbackContributors = backup as Contributor[];
+
 const contributors = await (async (): Promise<Contributor[]> => {
     try {
         const res = await fetch(
             "https://api.github.com/repos/cdin-editor/cdin/contributors?per_page=100",
         );
+
+        if (!res.ok) {
+            console.warn(
+                `GitHub contributors API returned ${res.status}; using contributors.json.`,
+            );
+            return fallbackContributors;
+        }
+
         const data = await res.json();
-        return res.ok && Array.isArray(data) && data.length
+        return Array.isArray(data) && data.length
             ? (data as Contributor[])
-            : (backup as Contributor[]);
+            : fallbackContributors;
     } catch (e) {
-        console.error("Failed to fetch contributors:", e);
-        return backup as Contributor[];
+        console.warn(
+            "GitHub contributors API unavailable; using contributors.json.",
+            e,
+        );
+        return fallbackContributors;
     }
 })();
 
