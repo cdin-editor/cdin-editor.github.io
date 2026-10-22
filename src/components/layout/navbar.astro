@@ -5,6 +5,7 @@ import MobileNav from "./MobileNav";
 import Link from "../sections/Link.astro";
 
 import { getRelease } from "@/lib/getRelease";
+import { getDocsSections } from "@/lib/docs";
 const { tag_name } = await getRelease();
 
 const { url } = Astro;
@@ -12,6 +13,9 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
 
 const isActive = (href: string) =>
     currentPath === href || currentPath.startsWith(`${href}/`);
+
+const isDocs = isActive("/docs");
+const docsSections = isDocs ? await getDocsSections() : [];
 ---
 
 <header class="sticky border-b border-x top-0 z-50 bg-background">
@@ -70,7 +74,11 @@ const isActive = (href: string) =>
                 </li>
             </div>
             <li class="md:hidden flex">
-                <MobileNav client:visible />
+                <MobileNav
+                    client:visible
+                    docsSections={docsSections}
+                    currentPath={currentPath}
+                />
             </li>
         </ul>
     </nav>

@@ -1,21 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/sections/Link.astro";
-import { getCollection } from "astro:content";
+import { getDocsSections } from "@/lib/docs";
 
-const docs = await getCollection("docs");
-
-const sections = [...new Set(docs.map((d) => d.id.split("/")[0]))].map(
-    (section) => ({
-        name: section,
-        items: docs
-            .filter((d) => d.id.split("/")[0] === section)
-            .map((d) => ({
-                href: `${d.id}`,
-                label: d.id.split("/").slice(1).join("/"),
-            })),
-    }),
-);
+const sections = await getDocsSections();
 
 const { url } = Astro;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
