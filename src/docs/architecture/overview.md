@@ -56,7 +56,7 @@ editor is broken" and "an extension misbehaves" stop being the same
 investigation.
 
 The contract cdin provides, and cdin-x may rely on, is
-[the extension contract](extension-contract.md). Read it before changing anything
+[the extension contract](/docs/architecture/extension-contract). Read it before changing anything
 about `config.site_dir`, the loader or the theme registry.
 
 ## Boot
@@ -135,7 +135,7 @@ Then `core.init()`:
 installed before your config runs, so a key you set is one a plugin can override;
 and your config runs before plugins, so it can `require` a plugin's module but
 not its side effects. The argument for each is in
-[configuration](../guides/configuration.md#when-it-runs-and-why-that-matters).
+[configuration](/docs/guides/configuration#when-it-runs-and-why-that-matters).
 
 **Step 3 is the load-bearing one for everything project-shaped.** The file list,
 the ignore rules and the git status all come from the working directory, so
@@ -163,7 +163,7 @@ and becomes part of the same tree rather than a layer above it.
 `RootView:attach_side_view` is the better interface and is the documented one;
 both cdin-x panels still split the active node, which is fine while there is one
 panel and a conflict the day there are two. See
-[side panels](extension-contract.md#side-panels).
+[side panels](/docs/architecture/extension-contract#side-panels).
 
 **A node holds a list of views.** That is what `root:switch-to-pane-view-N` and
 `root:move-pane-view-*` reach, and it is why those names say *pane view*: the
@@ -253,13 +253,13 @@ command an optional plugin might own without erroring when it is absent.
 
 | | |
 | --- | --- |
-| [`data/core/init.lua`](../../data/core/init.lua) | the boot order above, in the order it happens |
-| [`data/core/loop.lua`](../../data/core/loop.lua) | the frame loop and the thread scheduler |
-| [`data/core/state.lua`](../../data/core/state.lua) | the initial state and the view tree |
-| [`data/core/rootview/`](../../data/core/rootview) | the pane tree |
-| [`data/core/views/`](../../data/core/views) | DocView, CommandView, StatusView, TitleBar, LogView |
-| [`data/core/doc/`](../../data/core/doc) | the document, the highlighter, the word translations |
-| [`data/core/input/`](../../data/core/input) | the command and key registries |
-| [`data/core/plugins.lua`](../../data/core/plugins.lua) | the loader |
-| [`data/core/themes.lua`](../../data/core/themes.lua) | the theme registry |
-| [`src/`](../../src) | the C layer |
+| [`data/core/init.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/init.lua) | the boot order above, in the order it happens |
+| [`data/core/loop.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/loop.lua) | the frame loop and the thread scheduler |
+| [`data/core/state.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/state.lua) | the initial state and the view tree |
+| [`data/core/rootview/`](https://github.com/cdin-editor/cdin/tree/main/data/core/rootview) | the pane tree |
+| [`data/core/views/`](https://github.com/cdin-editor/cdin/tree/main/data/core/views) | DocView, CommandView, StatusView, TitleBar, LogView |
+| [`data/core/doc/`](https://github.com/cdin-editor/cdin/tree/main/data/core/doc) | the document, the highlighter, the word translations |
+| [`data/core/input/`](https://github.com/cdin-editor/cdin/tree/main/data/core/input) | the command and key registries |
+| [`data/core/plugins.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/plugins.lua) | the loader |
+| [`data/core/themes.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/themes.lua) | the theme registry |
+| [`src/`](https://github.com/cdin-editor/cdin/tree/main/src) | the C layer |

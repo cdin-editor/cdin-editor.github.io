@@ -1,7 +1,7 @@
 # Internals
 
 A deeper look at the pieces you need if you are working on the C layer, the text
-pipeline, or the frame loop. [The overview](overview.md) has the split and the
+pipeline, or the frame loop. [The overview](/docs/architecture/overview) has the split and the
 boot order; this page has the machinery.
 
 ## The C layer
@@ -184,7 +184,7 @@ Doc._after_load  = {}   -- fn(doc) after reading
 
 Plain lists, called with `ipairs`. They are the extension seam plugins prefer
 over wrapping `Doc.save`, because unloading is `table.remove` rather than a
-restore-everything dance. See [plugins](../guides/plugins.md#document-hooks).
+restore-everything dance. See [plugins](/docs/guides/plugins#document-hooks).
 
 ### `reset_syntax`
 
@@ -253,10 +253,10 @@ partly-coloured line, depending on which span it lands in.
 
 | file | holds |
 | --- | --- |
-| [`data/core/syntax/syntax.lua`](../../data/core/syntax/syntax.lua) | `add`, `get`, the backwards lookup |
-| [`data/core/syntax/tokenizer.lua`](../../data/core/syntax/tokenizer.lua) | the walker, the state machine, token merging |
-| [`data/core/doc/highlighter.lua`](../../data/core/doc/highlighter.lua) | the per-document cache and its thread |
-| [`data/core/utils/common.lua`](../../data/core/utils/common.lua) | `match_pattern`, shared with the project scan |
+| [`data/core/syntax/syntax.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/syntax/syntax.lua) | `add`, `get`, the backwards lookup |
+| [`data/core/syntax/tokenizer.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/syntax/tokenizer.lua) | the walker, the state machine, token merging |
+| [`data/core/doc/highlighter.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/doc/highlighter.lua) | the per-document cache and its thread |
+| [`data/core/utils/common.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/utils/common.lua) | `match_pattern`, shared with the project scan |
 
 ## Views
 
@@ -414,13 +414,13 @@ are still there for the other fourteen translations.
 
 | file | holds |
 | --- | --- |
-| [`src/main.c`](../../src/main.c) | `main()` |
-| [`src/lua/api.c`](../../src/lua/api.c) | the globals and the bootstrap string |
-| [`src/ui/renderer.c`](../../src/ui/renderer.c) | drawing, and the caches |
-| [`data/core/loop.lua`](../../data/core/loop.lua) | the frame loop and the scheduler |
-| [`data/core/doc/init.lua`](../../data/core/doc/init.lua) | the document, undo, the hooks |
-| [`data/core/doc/highlighter.lua`](../../data/core/doc/highlighter.lua) | the incremental highlighter |
-| [`data/core/text/`](../../data/core/text) | UTF-8, bidi, shaping |
-| [`data/core/utils/object.lua`](../../data/core/utils/object.lua) | `extend`, `is` |
-| [`data/core/fs.lua`](../../data/core/fs.lua) | the filesystem and path layer |
-| [`data/core/logging.lua`](../../data/core/logging.lua) | `core.try` and the three levels |
+| [`src/main.c`](https://github.com/cdin-editor/cdin/blob/main/src/main.c) | `main()` |
+| [`src/lua/api.c`](https://github.com/cdin-editor/cdin/blob/main/src/lua/api.c) | the globals and the bootstrap string |
+| [`src/ui/renderer.c`](https://github.com/cdin-editor/cdin/blob/main/src/ui/renderer.c) | drawing, and the caches |
+| [`data/core/loop.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/loop.lua) | the frame loop and the scheduler |
+| [`data/core/doc/init.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/doc/init.lua) | the document, undo, the hooks |
+| [`data/core/doc/highlighter.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/doc/highlighter.lua) | the incremental highlighter |
+| [`data/core/text/`](https://github.com/cdin-editor/cdin/tree/main/data/core/text) | UTF-8, bidi, shaping |
+| [`data/core/utils/object.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/utils/object.lua) | `extend`, `is` |
+| [`data/core/fs.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/fs.lua) | the filesystem and path layer |
+| [`data/core/logging.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/logging.lua) | `core.try` and the three levels |

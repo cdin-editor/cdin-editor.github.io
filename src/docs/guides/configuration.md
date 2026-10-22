@@ -167,7 +167,7 @@ writes `config.theme` — over editing `config.theme` and restarting.
 Themes are cdin-x's: the format and the full colour list are in
 [adding a theme](https://github.com/m-mdy-m/cdin-x/blob/main/docs/building/a-theme.md). The runtime's half — the roots a theme
 is looked up in, and `themes.apply` — is in
-[the extension contract](../architecture/extension-contract.md#themes).
+[the extension contract](/docs/architecture/extension-contract#themes).
 
 ## Text
 
@@ -294,5 +294,5 @@ should beat a plugin.
 
 | file | holds |
 | --- | --- |
-| [`data/core/config.lua`](../../data/core/config.lua) | every default, and the path resolution |
-| [`data/core/preboot.lua`](../../data/core/preboot.lua) | the session state read before anything else loads |
+| [`data/core/config.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/config.lua) | every default, and the path resolution |
+| [`data/core/preboot.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/preboot.lua) | the session state read before anything else loads |
