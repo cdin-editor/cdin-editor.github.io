@@ -6,7 +6,7 @@ commands, the keymap, syntax highlighting, styling — is Lua in `data/core/`
 next to the binary. If you can read Lua, you can read the whole editor.
 
 This page covers running it and finding your way around. To compile it, see
-[building from source](building.md).
+[building from source](/docs/guides/building).
 
 ## Running
 
@@ -22,7 +22,7 @@ make run
 **A fresh clone of cdin alone cannot `make`.** `make` assembles `data/`, and the
 mandatory set — vim mode, the extension manager, the default theme, the fonts —
 comes from cdin-x, which must be a sibling checkout or be named with `CDINX_DIR`. `make bin` compiles the
-binary alone and needs neither. [Building from source](building.md) has the whole
+binary alone and needs neither. [Building from source](/docs/guides/building) has the whole
 story.
 
 The binary lands at `build/<platform>-<build>/cdin` — `cdin.exe` on Windows — and
@@ -50,7 +50,7 @@ Careful with `-u`: it swallows the *next* argument unconditionally, so
 and your own plugins live in. Vim mode, the manager, the default theme and the
 fonts are part of the build and always load, and what you installed *from the
 panel* is in neither place, so it keeps loading too. See
-[configuration](configuration.md#plugins) for the whole boundary.
+[configuration](/docs/guides/configuration#plugins) for the whole boundary.
 
 ## First launch
 
@@ -68,7 +68,7 @@ reference underneath.
 Clicking a recent item opens it. The four struck-through rows are a known gap,
 not a design: the empty view handles those keys in an `on_key_pressed` that
 nothing in the runtime calls, and the commands those strokes name all need an open
-prompt. [Commands](commands.md#the-empty-view) has the mechanism; it is a
+prompt. [Commands](/docs/guides/commands#the-empty-view) has the mechanism; it is a
 two-line dispatch and it is the one thing on this screen that lies to you.
 
 There is no command palette row, no "find file" row, no "open folder" row —
@@ -127,7 +127,7 @@ two overlap, it wins: <kbd>Alt</kbd>+<kbd>J</kbd> will do what `window` says.
 All of it is [cdin-x](https://github.com/m-mdy-m/cdin-x), and you get it from
 inside the editor. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>, move to
 what you want, press <kbd>Space</kbd>. The manager downloads that one extension —
-not the repository — and loads it without a restart. [Extensions](extensions.md)
+not the repository — and loads it without a restart. [Extensions](/docs/guides/extensions)
 has every key, what each one collides with, what is downloaded, and where it
 goes.
 
@@ -167,7 +167,7 @@ faster than counting.
 **Quitting.** Any command runner's quit, or close the window. You are asked before
 discarding unsaved changes.
 
-[the command reference](commands.md) has all of it, with the command name for
+[the command reference](/docs/guides/commands) has all of it, with the command name for
 each.
 
 ## Configuring
@@ -191,7 +191,7 @@ local config = require "core.config"
 config.indent_size = 4
 ```
 
-Your file runs before plugins load. [Configuration](configuration.md) has every
+Your file runs before plugins load. [Configuration](/docs/guides/configuration) has every
 key, and the reasoning behind the load order — which decides whether a plugin or
 you gets the last word on a keystroke.
 
@@ -203,18 +203,18 @@ runtime binds it itself, so it works in a build with nothing installed.
 Everything the log view shows is also written to `cdin-log.txt` next to the
 binary, together with the C logger's own lines, tracebacks included. That one
 text file is what to attach to a bug report. See
-[troubleshooting](troubleshooting.md#start-here).
+[troubleshooting](/docs/guides/troubleshooting#start-here).
 
-[Troubleshooting](troubleshooting.md) has the specific failures, build and
+[Troubleshooting](/docs/guides/troubleshooting) has the specific failures, build and
 otherwise, and a short list of `make` targets that do not work.
 
 ## Where to go next
 
 | | |
 | --- | --- |
-| [Commands](commands.md) | every command and key, as a table |
-| [Configuration](configuration.md) | every `config` key |
-| [Extensions](extensions.md) | what a build contains, the panel, installing, where things land |
-| [Plugins](plugins.md) | the loader, and writing one |
-| [Architecture](../architecture/overview.md) | if you are about to change something |
-| [Extension contract](../architecture/extension-contract.md) | if you are about to change what is guaranteed |
+| [Commands](/docs/guides/commands) | every command and key, as a table |
+| [Configuration](/docs/guides/configuration) | every `config` key |
+| [Extensions](/docs/guides/extensions) | what a build contains, the panel, installing, where things land |
+| [Plugins](/docs/guides/plugins) | the loader, and writing one |
+| [Architecture](/docs/architecture/overview) | if you are about to change something |
+| [Extension contract](/docs/architecture/extension-contract) | if you are about to change what is guaranteed |

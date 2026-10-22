@@ -82,7 +82,7 @@ cdin-x is allowed to assume. If something is not in there, it is not a contract,
 and changing it is a breaking change.
 
 **[CONTRIBUTING.md](/docs/others/contributing)** — the conventions and the PR checklist.
-**[AGENTS.md](/docs/../AGENTS.md)** — the same, for agents: which suite to run after
+**[AGENTS.md](https://github.com/cdin-editor/cdin/blob/main/AGENTS.md)** — the same, for agents: which suite to run after
 touching what.
 
 ## Elsewhere

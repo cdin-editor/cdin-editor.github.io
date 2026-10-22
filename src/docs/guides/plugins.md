@@ -14,7 +14,7 @@ needs to be.
 **And a build ships that half**, marked `essential` next to vim, so the panel is
 reachable in every editor rather than only in one that was set up by hand. Which
 of the two you are talking about matters: `data/core/` owns what *loads*, cdin-x
-owns what is *installed*. [Extensions](extensions.md) is the user's view of it.
+owns what is *installed*. [Extensions](/docs/guides/extensions) is the user's view of it.
 
 ## Two roots, and the difference decides everything
 
@@ -134,7 +134,7 @@ there is.
 There is no hook or event system. There are a set of provider registries and
 document hooks, and beyond that you wrap a function and call the original. Every
 seam below is documented in
-[the extension contract](../architecture/extension-contract.md), which is the
+[the extension contract](/docs/architecture/extension-contract), which is the
 normative version.
 
 ### Provider registries
@@ -283,7 +283,7 @@ way it bundles vim, and the panel is a keystroke away
 (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>) in any build.
 
 The keys, what the panel downloads, and where installed extensions end up are in
-[extensions](extensions.md). Four facts matter here because they are about the
+[extensions](/docs/guides/extensions). Four facts matter here because they are about the
 loader:
 
 - **What the manager installs is not in either of the loader's roots.** It keeps
@@ -311,7 +311,7 @@ require("core.config").site_path()
 ```
 
 `config.site_path()` rather than a field on the table, deliberately — see
-[configuration](configuration.md#where-things-live). Your plugin can be loaded by
+[configuration](/docs/guides/configuration#where-things-live). Your plugin can be loaded by
 name while it is still being written, which is the whole development loop.
 
 For installing from a catalog, an in-app UI, dependency resolution or anything that
@@ -334,13 +334,13 @@ renaming the site directory renames it for both halves at once.
 
 | file | holds |
 | --- | --- |
-| [`data/core/plugins.lua`](../../data/core/plugins.lua) | the loader: both roots, entry points, the error policy |
-| [`data/core/config.lua`](../../data/core/config.lua) | `config.plugins` and the path resolution |
-| [`data/core/commands/plugin.lua`](../../data/core/commands/plugin.lua) | the three management commands |
-| [`data/core/help.lua`](../../data/core/help.lua) | the help-shortcut registry |
-| [`data/core/project.lua`](../../data/core/project.lua) | the VCS provider hook, and the file scan |
-| [`data/core/docs.lua`](../../data/core/docs.lua) | `core.open_doc`, `core.reload_module`, clipping |
-| [`data/core/init.lua`](../../data/core/init.lua) | `core.add_thread`, `core.set_active_view`, `core.quit` |
-| [`data/core/loop.lua`](../../data/core/loop.lua) | `core.step`, `core.run`, the thread scheduler, and where `core.redraw` is consumed |
-| [`data/core/preboot.lua`](../../data/core/preboot.lua) | the session state read before anything else loads |
-| [`data/core/lifecycle.lua`](../../data/core/lifecycle.lua) | the project module, `.lite_project.lua` |
+| [`data/core/plugins.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/plugins.lua) | the loader: both roots, entry points, the error policy |
+| [`data/core/config.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/config.lua) | `config.plugins` and the path resolution |
+| [`data/core/commands/plugin.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/commands/plugin.lua) | the three management commands |
+| [`data/core/help.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/help.lua) | the help-shortcut registry |
+| [`data/core/project.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/project.lua) | the VCS provider hook, and the file scan |
+| [`data/core/docs.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/docs.lua) | `core.open_doc`, `core.reload_module`, clipping |
+| [`data/core/init.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/init.lua) | `core.add_thread`, `core.set_active_view`, `core.quit` |
+| [`data/core/loop.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/loop.lua) | `core.step`, `core.run`, the thread scheduler, and where `core.redraw` is consumed |
+| [`data/core/preboot.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/preboot.lua) | the session state read before anything else loads |
+| [`data/core/lifecycle.lua`](https://github.com/cdin-editor/cdin/blob/main/data/core/lifecycle.lua) | the project module, `.lite_project.lua` |

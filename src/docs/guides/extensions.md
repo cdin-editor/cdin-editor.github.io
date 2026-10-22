@@ -7,8 +7,8 @@ extensions live in [cdin-x](https://github.com/m-mdy-m/cdin-x).
 
 This page is the user's view of that arrangement: what is already in your
 build, how to get the rest, and where it all ends up on disk. How the loader
-works is [plugins](plugins.md); what cdin guarantees an extension is
-[the extension contract](../architecture/extension-contract.md).
+works is [plugins](/docs/guides/plugins); what cdin guarantees an extension is
+[the extension contract](/docs/architecture/extension-contract).
 
 ## What every build contains
 
@@ -49,7 +49,7 @@ text until you install some.
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> for the panel, and
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> for the log. Everything else you
 press on a fresh build is the runtime's own — which is why
-[the command reference](commands.md) can be a complete list.
+[the command reference](/docs/guides/commands) can be a complete list.
 
 ## What is not in the build, and what each one binds
 
@@ -241,7 +241,7 @@ first root the registry searches — until the manager registers its own.
 Windows. cdin computes it once, in `config.data_home`; the manager recomputes the
 same thing rather than reading that field, because it has to be able to run before
 it has decided to trust anything. The site directory's *name* is
-`config.site_dirname` ([configuration](configuration.md#where-things-live)).
+`config.site_dirname` ([configuration](/docs/guides/configuration#where-things-live)).
 
 **The first four rows are not the loader's business.** `core.plugins` knows two
 roots — bundled and site — and nothing else. The manager finds what it installed
@@ -306,4 +306,4 @@ Not here, on purpose: the code and the page that explains it change together.
 
 What stays in *this* repository is the part that is the runtime's: the registry
 a theme is read through (`core.themes`), the tokenizer a definition feeds
-([internals](../architecture/internals.md#syntax-highlighting)), and the loader.
+([internals](/docs/architecture/internals#syntax-highlighting)), and the loader.
