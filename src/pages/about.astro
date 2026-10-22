@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/sections/Link.astro";
-import { BookOpenText, ShuffleIcon } from "lucide-react";
+import { BookOpenText, PlusIcon, ShuffleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 export const features = [
     "Modal editing built in and on by default. Vim-style Normal / Insert / Visual modes work out of the box.",
@@ -26,7 +26,7 @@ export const paragraph =
 
 <BaseLayout>
     <section class="w-full">
-        <div class="grid grid-cols-10 border-b items-center">
+        <div class="grid grid-cols-10 border-b items-center relative">
             <div class="col-span-10 lg:col-span-5 py-10 px-6 border-b lg:border-b-0">
                 <span class="font-thin text-xs text-muted-foreground">
                     CHOOSE 0.1%
@@ -73,6 +73,8 @@ export const paragraph =
                     <ShuffleIcon />
                 </Button>
             </div>
+            <!-- <PlusIcon className="absolute size-4 z-30 left-[-9.4px] bottom-[-9.4px]" /> -->
+            <!-- <PlusIcon className="absolute size-4 z-30 right-[-9.4px] bottom-[-9.4px]" /> -->
         </div>
         <div class="grid divide-x grid-cols-1 border-b">
             {Array(1)
@@ -93,12 +95,14 @@ export const paragraph =
                 </Card>
             ))}
         </div>
-        <div class="grid divide-x grid-cols-1 border-b">
+        <div class="grid divide-x grid-cols-1 border-b relative">
             {Array(1)
                 .fill(null)
                 .map(() => (
                     <div class="h-10 duration-200 dark:hover:bg-accent/30 hover:bg-accent/40"></div>
                 ))}
+            <!-- <PlusIcon className="absolute size-4 left-[-9.4px] bottom-[-9.4px]" /> -->
+            <!-- <PlusIcon className="absolute size-4 right-[-9.4px] bottom-[-9.4px]" /> -->
         </div>
         <div class="text-muted-foreground mt-4 sm:p-5 p-3 text-justify wrap-break-word flex">
             <p class="text-wrap text-center justify-center flex flex-wrap gap-2 md:text-sm text-xs">
