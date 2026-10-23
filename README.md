@@ -4,8 +4,8 @@ The CDIN website is built with [Astro](https://astro.build/) and deployed to Git
 
 ## Requirements
 
-- Node.js 22.12 or newer
-- pnpm 10.9.2 (pinned in `package.json` and the deployment workflow)
+- Node.js 22.22.0 or newer
+- pnpm 9.15.4 (pinned in `package.json` via `packageManager`, following the Gland website setup)
 
 ## Local development
 

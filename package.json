@@ -3,7 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.22.0",
+    "pnpm": ">=9"
   },
   "scripts": {
     "dev": "astro dev",
@@ -29,5 +30,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20"
-  }
+  },
+  "packageManager": "pnpm@9.15.4"
 }
