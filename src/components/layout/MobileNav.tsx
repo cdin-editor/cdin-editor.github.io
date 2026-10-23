@@ -94,7 +94,7 @@ export default function MobileNav({
                         }
                     >
                         <img
-                            src="/github.svg"
+                            src={`${import.meta.env.BASE_URL}github.svg`}
                             alt=""
                             width={20}
                             height={20}

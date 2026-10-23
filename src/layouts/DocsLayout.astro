@@ -6,6 +6,8 @@ import { getDocsSections } from "@/lib/docs";
 const sections = await getDocsSections();
 
 const { url } = Astro;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const docsPath = `${basePath}/docs`;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
 ---
 
@@ -18,11 +20,11 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
                         Welcome
                     </span>
                     <Link
-                        href={`/docs`}
+                        href={docsPath}
                         label={`welcome`}
                         variant={`link`}
                         buttonClassName={`text-start p-0 m-0 break-words-all`}
-                        aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `/docs` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
+                        aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === docsPath ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
                     />
                 </div>
                 {sections.map((section) => (
@@ -32,11 +34,11 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
                         </span>
                         {section.items.map((item) => (
                             <Link
-                                href={`/docs/${item.href}`}
+                                href={`${docsPath}/${item.href}`}
                                 label={item.label}
                                 variant={`link`}
                                 buttonClassName={`text-start p-0 m-0 break-words-all`}
-                                aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `/docs/${item.href}` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
+                                aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `${docsPath}/${item.href}` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
                             />
                         ))}
                     </div>

@@ -9,10 +9,13 @@ import { getDocsSections } from "@/lib/docs";
 const { tag_name } = await getRelease();
 
 const { url } = Astro;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
 
-const isActive = (href: string) =>
-    currentPath === href || currentPath.startsWith(`${href}/`);
+const isActive = (href: string) => {
+    const path = href === "/" ? (basePath || "/") : `${basePath}${href}`;
+    return currentPath === path || (href !== "/" && currentPath.startsWith(`${path}/`));
+};
 
 const isDocs = isActive("/docs");
 const docsSections = isDocs ? await getDocsSections() : [];

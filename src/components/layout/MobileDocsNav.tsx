@@ -11,6 +11,8 @@ export default function MobileDocsNav({
     sections,
     currentPath,
 }: MobileDocsNavProps) {
+    const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+    const docsPath = `${basePath}/docs`;
     const linkClassName = (href: string) =>
         cn(
             "w-full py-2.5 pr-6 text-sm duration-150 hover:text-primary",
@@ -28,7 +30,7 @@ export default function MobileDocsNav({
                 Documentation
             </span>
             <SheetClose
-                render={<a href="/docs" className={linkClassName("/docs")} />}
+                render={<a href={docsPath} className={linkClassName(docsPath)} />}
             >
                 Welcome
             </SheetClose>
@@ -38,7 +40,7 @@ export default function MobileDocsNav({
                         {section.name}
                     </span>
                     {section.items.map((item) => {
-                        const href = `/docs/${item.href}`;
+                        const href = `${docsPath}/${item.href}`;
 
                         return (
                             <SheetClose
