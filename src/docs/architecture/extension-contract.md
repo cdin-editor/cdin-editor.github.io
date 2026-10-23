@@ -269,7 +269,7 @@ validation. A `type` with no matching style key is **not** uniformly rescued: on
 of the three draw paths in `docview.lua` falls back to `normal`, the other two
 pass the missing colour to the renderer and get opaque white. Define every `type`
 your definitions emit.
-[Internals](/docs/architecture/internals#syntax-highlighting) has the tokenizer and the honest
+[Internals](../internals#syntax-highlighting) has the tokenizer and the honest
 limits — including that the delimiter state is one level deep, not a stack. How to
 write a definition is cdin-x's: [adding a syntax definition](https://github.com/m-mdy-m/cdin-x/blob/main/docs/building/a-syntax-definition.md).
 
@@ -598,7 +598,7 @@ those two are no-ops on a bare editor rather than errors. The empty view's
 shortcut list is correspondingly short, and it holds no palette row, no find-file
 row and no open-folder row — only what the runtime owns. (Four of the five entries
 it does own are printed without being reachable; see
-[the empty view](/docs/guides/commands#the-empty-view). The rule the list follows
+[the empty view](../../guides/commands#the-empty-view). The rule the list follows
 is right even where the wiring is not: *do not advertise a keystroke that does
 nothing*.)
 

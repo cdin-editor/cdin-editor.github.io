@@ -23,4 +23,4 @@
 ## Build
 
 - `dist/` and `.astro/` are generated and gitignored — don't edit or commit.
-- GitHub Pages repo (`cdin-editor/cdin.github.io`) — `pnpm build` must pass, no server/env to configure.
+- GitHub Pages repo (`cdin-editor/cdin-editor.github.io`) — `pnpm build` must pass, no server/env to configure.

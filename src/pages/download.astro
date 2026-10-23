@@ -9,6 +9,8 @@ import {
     XIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout>
@@ -96,7 +98,7 @@ import { Button } from "@/components/ui/button";
                     <Maximize />
                 </Button>
                 <img
-                    src="/CDIN-CODE.webp"
+                    src={`${basePath}/CDIN-CODE.webp`}
                     alt="Cdin code preview"
                     width="1980"
                     height="1080"
@@ -124,7 +126,7 @@ import { Button } from "@/components/ui/button";
                     <XIcon />
                 </Button>
                 <img
-                    src="/CDIN-CODE.webp"
+                    src={`${basePath}/CDIN-CODE.webp`}
                     alt="Cdin code preview"
                     class="max-w-[92vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg"
                 />
@@ -171,7 +173,7 @@ import { Button } from "@/components/ui/button";
                 <div class="sm:p-6 p-4 flex items-center justify-between flex-wrap gap-6">
                     <h5 class="flex items-center gap-2 text-lg sm:text-xl font-bold">
                         <img
-                            src="/linux.svg"
+                            src={`${basePath}/linux.svg`}
                             alt="linux"
                             width="1980"
                             height="1080"
@@ -193,7 +195,7 @@ import { Button } from "@/components/ui/button";
                         SOURCE
                     </h5>
                     <Link
-                        href="docs/guides/getting-started"
+                        href={`${basePath}/docs/guides/getting-started`}
                         icon={SquareArrowOutUpRight}
                         label="BUILT FROM SOURCE"
                         buttonClassName="m-0"

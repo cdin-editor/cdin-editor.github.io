@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# CDIN Website
+
+The CDIN website is built with [Astro](https://astro.build/) and deployed to GitHub Pages using GitHub Actions.
+
+## Requirements
+
+- Node.js 22.12 or newer
+- pnpm 10.9.2 (pinned in `package.json` and the deployment workflow)
+
+## Local development
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Production build
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+pnpm build
+pnpm preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro writes the static site to `dist/`. The site uses the root URL as its base, so pages and public assets resolve from `/` rather than a repository subpath.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## GitHub Pages deployment
 
-Any static assets, like images, can be placed in the `public/` directory.
+This project is configured as the **organization site** for `cdin-editor`. To publish at `https://cdin-editor.github.io/`, the repository itself must be named **`cdin-editor.github.io`**. Rename the current repository from `cdin.github.io` to `cdin-editor.github.io` in **Settings → General → Repository name** before deploying.
 
-## 🧞 Commands
+The workflow in `.github/workflows/deploy.yml` runs on pushes to `main` and can also be started manually from the Actions tab. It installs the locked dependencies, runs the regular Astro build, uploads `dist/`, and deploys it to GitHub Pages. No post-build URL rewriting script is needed.
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+For the first deployment, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**.

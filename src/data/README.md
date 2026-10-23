@@ -31,57 +31,57 @@ That is why <kbd>Ctrl</kbd>+<kbd>P</kbd>, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>
 
 <kbd>Ctrl</kbd>+<kbd>O</kbd> and <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>
 are **not** bound by this runtime, and why [the command
-reference](/docs/guides/commands) does not list them. They belong to the plugins
+reference](guides/commands) does not list them. They belong to the plugins
 that implement them, so that an editor with no extensions has no dead keys and
 an editor with them gets them from the thing that actually works.
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> and <kbd>Ctrl</kbd>+
 <kbd>Shift</kbd>+<kbd>L</kbd>
 are bound, because the manager and the log view are part of every build.
 
-[Extensions](/docs/guides/extensions) has the whole list: every optional extension,
+[Extensions](guides/extensions) has the whole list: every optional extension,
 the keys each one adds, and the handful of strokes where two of them overlap.
 
 ## Using it
 
-**[Getting started](/docs/guides/getting-started)** — install, first launch, what
+**[Getting started](guides/getting-started)** — install, first launch, what
 you get out of the box and what you have to add. If you read one page, read
 that one.
 
-**[Extensions](/docs/guides/extensions)** — what a build contains, the
+**[Extensions](guides/extensions)** — what a build contains, the
 
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> panel, what installing downloads,
 and where everything ends up on disk.
 
-**[Configuration](/docs/guides/configuration)** — every `config` key, what it
+**[Configuration](guides/configuration)** — every `config` key, what it
 defaults to, and the one that decides where your plugins live.
 
-**[Commands](/docs/guides/commands)** — every command the runtime registers and
+**[Commands](guides/commands)** — every command the runtime registers and
 every key it binds, as tables you can copy from.
 
 ## Writing an extension
 
-**[Plugins](/docs/guides/plugins)** — the loader, the two roots, the error policy,
+**[Plugins](guides/plugins)** — the loader, the two roots, the error policy,
 the seams, and writing one.
 
 ## Building it
 
-**[Building from source](/docs/guides/building)** — dependencies, the `make`
+**[Building from source](guides/building)** — dependencies, the `make`
 targets, the `CDINX_DIR` a build needs, and the four test suites.
-**[Troubleshooting](/docs/guides/troubleshooting)** — build failures, and the ones
+**[Troubleshooting](guides/troubleshooting)** — build failures, and the ones
 that are not build failures.
 
 ## Working on the editor
 
-**[architecture/overview](/docs/architecture/overview)** — the C/Lua split and
+**[architecture/overview](architecture/overview)** — the C/Lua split and
 the boot order. Read this one first if you are about to change anything.
-**[architecture/internals](/docs/architecture/internals)** — the frame loop, the
+**[architecture/internals](architecture/internals)** — the frame loop, the
 text pipeline, the highlighter and tokenizer, the view tree.
-**[architecture/extension-contract](/docs/architecture/extension-contract)** —
+**[architecture/extension-contract](architecture/extension-contract)** —
 the whole of what cdin guarantees an extension, and therefore the whole of what
 cdin-x is allowed to assume. If something is not in there, it is not a contract,
 and changing it is a breaking change.
 
-**[CONTRIBUTING.md](/docs/others/contributing)** — the conventions and the PR checklist.
+**[CONTRIBUTING.md](others/contributing)** — the conventions and the PR checklist.
 **[AGENTS.md](https://github.com/cdin-editor/cdin/blob/main/AGENTS.md)** — the same, for agents: which suite to run after
 touching what.
 

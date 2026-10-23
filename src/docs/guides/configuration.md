@@ -167,7 +167,7 @@ writes `config.theme` — over editing `config.theme` and restarting.
 Themes are cdin-x's: the format and the full colour list are in
 [adding a theme](https://github.com/m-mdy-m/cdin-x/blob/main/docs/building/a-theme.md). The runtime's half — the roots a theme
 is looked up in, and `themes.apply` — is in
-[the extension contract](/docs/architecture/extension-contract#themes).
+[the extension contract](../../architecture/extension-contract#themes).
 
 ## Text
 

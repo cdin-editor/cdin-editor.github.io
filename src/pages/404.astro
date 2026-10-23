@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 
 const { url } = Astro;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <NotfoundLayout>
@@ -21,7 +22,7 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
             </p>
             <Link
                 label="BACK HOME"
-                href="/"
+                href={`${basePath}/`}
                 variant={`default`}
                 buttonClassName="w-fit"
             />

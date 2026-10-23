@@ -6,7 +6,7 @@ Thanks for wanting to contribute. Here's what you need to know.
 
 ## Before you start
 
-Read [docs/architecture/overview.md](/docs/architecture/overview). It covers
+Read [docs/architecture/overview.md](../../architecture/overview). It covers
 the C/Lua split, the command and keymap system, how plugins hook in, and how
 the frame loop works. A lot of contribution mistakes come from not knowing how
 these pieces connect, and the document is short.
@@ -50,7 +50,7 @@ make run
 ```
 
 For more detail and platform-specific notes, see
-[docs/guides/building.md](/docs/guides/building).
+[docs/guides/building.md](../../guides/building).
 
 ---
 
@@ -236,15 +236,15 @@ before writing code.
    about what you tested and how. The suites do not replace that.
 
 6. Update the docs if your change affects:
-   - Commands or keybindings → [docs/guides/commands.md](/docs/guides/commands)
-   - Configuration options → [docs/guides/configuration.md](/docs/guides/configuration)
-   - What a build contains, or installing extensions → [docs/guides/extensions.md](/docs/guides/extensions)
-   - Plugin behavior or an extension seam → [docs/guides/plugins.md](/docs/guides/plugins)
-   - Build targets, `CDINX_DIR` or the test suites → [docs/guides/building.md](/docs/guides/building)
-   - A specific failure → [docs/guides/troubleshooting.md](/docs/guides/troubleshooting)
-   - The architecture → [docs/architecture/overview.md](/docs/architecture/overview)
-   - The highlighter or the tokenizer → [docs/architecture/internals.md](/docs/architecture/internals)
-   - **What cdin guarantees an extension** → [docs/architecture/extension-contract.md](/docs/architecture/extension-contract)
+   - Commands or keybindings → [docs/guides/commands.md](../../guides/commands)
+   - Configuration options → [docs/guides/configuration.md](../../guides/configuration)
+   - What a build contains, or installing extensions → [docs/guides/extensions.md](../../guides/extensions)
+   - Plugin behavior or an extension seam → [docs/guides/plugins.md](../../guides/plugins)
+   - Build targets, `CDINX_DIR` or the test suites → [docs/guides/building.md](../../guides/building)
+   - A specific failure → [docs/guides/troubleshooting.md](../../guides/troubleshooting)
+   - The architecture → [docs/architecture/overview.md](../../architecture/overview)
+   - The highlighter or the tokenizer → [docs/architecture/internals.md](../../architecture/internals)
+   - **What cdin guarantees an extension** → [docs/architecture/extension-contract.md](../../architecture/extension-contract)
 
    That last one is the one to think hardest about. If cdin-x could plausibly
    have depended on the change, it is a breaking change, not a documentation
@@ -311,7 +311,7 @@ Extend via the documented seams before you wrap a function. `Doc._before_save`,
 `Doc._after_load` and `Doc._after_save` are real hooks; `trimwhitespace` (a cdin-x
 plugin) uses `_before_save` rather than replacing `Doc.save`, and
 `autoreload` uses the other two. See
-[the extension contract](/docs/architecture/extension-contract) for the full
+[the extension contract](../../architecture/extension-contract) for the full
 list, including the functions that are wrapped today but are **not** part of the
 contract.
 
@@ -426,8 +426,8 @@ why you need `keymap.add(map, true)` to override one a plugin set. Note that
 `keymap.add` is for keys and `command.add` for commands; a keystroke never holds
 a function.
 
-See [docs/guides/plugins.md](/docs/guides/plugins) for the loader's rules, and
-[the extension contract](/docs/architecture/extension-contract) for the whole
+See [docs/guides/plugins.md](../../guides/plugins) for the loader's rules, and
+[the extension contract](../../architecture/extension-contract) for the whole
 of what is guaranteed.
 
 ---

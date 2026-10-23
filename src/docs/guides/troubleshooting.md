@@ -185,7 +185,7 @@ own store under `<data_home>/cdin/extensions/X`, loads it itself, and never read
 `config.plugins`. Those extensions survive `--no-plugins`. To switch one off, press
 <kbd>Space</kbd> on it in the panel — that choice persists in
 `<data_home>/cdin/extensions.lua` — or delete the store. See
-[configuration](/docs/guides/configuration#plugins).
+[configuration](../configuration#plugins).
 
 ## Warnings after a change to `src/`
 
@@ -315,7 +315,7 @@ raised — the panel's *Installed* section says which, and the log has the reaso
 **If a key does the wrong thing** rather than nothing, two extensions want it and
 the later one won. <kbd>Alt</kbd>+<kbd>J</kbd> is the common one: the runtime's
 `root:switch-to-right` and cdin-x's `window:focus-down` both claim it.
-[Extensions](/docs/guides/extensions#what-is-not-in-the-build-and-what-each-one-binds) has
+[Extensions](../extensions#what-is-not-in-the-build-and-what-each-one-binds) has
 the collision table.
 
 Open the manager with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>, move to
@@ -502,7 +502,7 @@ keymap.add({ ["ctrl+d"] = "mine" }, true)   -- replace instead of prepend
 ```
 
 If you want yours to win outright, pass `true`. If you want the existing one to
-stay as a fallback, leave it off. [The command reference](/docs/guides/commands#binding-your-own)
+stay as a fallback, leave it off. [The command reference](../commands#binding-your-own)
 has the rest.
 
 ## Unloading a plugin left its keys behind

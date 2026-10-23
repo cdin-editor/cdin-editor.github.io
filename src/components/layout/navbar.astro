@@ -25,9 +25,9 @@ const docsSections = isDocs ? await getDocsSections() : [];
     <nav class="max-w-7xl mx-auto border-x">
         <ul class="flex items-stretch justify-between gap-4">
             <div class="flex items-stretch">
-                <a class="border-r px-4" href="/">
+                <a class="border-r px-4" href={`${basePath}/`}>
                     <img
-                        src="/cdin-icons/svg/cdin-original-transparent.svg"
+                        src={`${basePath}/cdin-icons/svg/cdin-original-transparent.svg`}
                         alt="cdin-original-transparent.svg"
                         width="1980"
                         height="1080"
@@ -66,7 +66,7 @@ const docsSections = isDocs ? await getDocsSections() : [];
                         target="_blank"
                     >
                         <img
-                            src="/github.svg"
+                            src={`${basePath}/github.svg`}
                             alt="github.svg"
                             width="1980"
                             height="1080"

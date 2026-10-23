@@ -2,17 +2,16 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
-
 import react from '@astrojs/react';
 
-// https://astro.build/config
+// This repository is intended to be the cdin-editor organization Pages site.
 export default defineConfig({
-  // This repository is a project site, so GitHub Pages serves it under /cdin.github.io/.
   site: 'https://cdin-editor.github.io',
-  base: process.env.GITHUB_ACTIONS === 'true' ? '/cdin.github.io' : '/',
+  base: '/',
+  trailingSlash: 'ignore',
+  build: { format: 'directory' },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
-
-  integrations: [react()]
+  integrations: [react()],
 });

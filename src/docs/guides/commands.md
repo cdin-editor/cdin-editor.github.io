@@ -19,7 +19,7 @@ theme — so on a fresh build the four strokes below do nothing at all:
 That is the intent rather than an omission: an editor with no extensions should
 have no dead keys, and an editor with them should get those keys from the plugin
 that actually implements them. Install them from the manager and they appear with
-no restart. [Extensions](/docs/guides/extensions) lists every optional extension and the
+no restart. [Extensions](../extensions) lists every optional extension and the
 keys it adds; cdin-x's [plugin index](https://github.com/m-mdy-m/cdin-x/blob/main/docs/plugins/README.md)
 has one page each.
 
@@ -229,7 +229,7 @@ reachable with no plugins at all.
 **`core:quit` is a seam, not a command.** It is the one function plugins wrap to
 run on exit. `core:force-quit` is the unwrap target; a plugin that calls it while
 wrapping `core:quit` skips its own confirmation, which is why the pair exists. See
-[the extension contract](/docs/architecture/extension-contract#what-the-runtime-hands-you).
+[the extension contract](../../architecture/extension-contract#what-the-runtime-hands-you).
 
 ## Panes and splits
 
@@ -263,7 +263,7 @@ turns into a resize arrow over it; drag it and the pane on the other side takes
 the width. For a locked pane there is no divider for the layout to move, so the
 drag is routed to the pane itself as `set_locked_size(axis, value)` — which is
 why `root:shrink` / `root:grow` are unbound for one and the mouse is not. See
-[side panels](/docs/architecture/extension-contract#side-panels).
+[side panels](../../architecture/extension-contract#side-panels).
 
 **A pane holds several views; the layout is a tree.** `root:switch-to-pane-view-N`
 reaches view *N inside the active pane*, which is not the same as tab N —
@@ -419,7 +419,7 @@ fix is a two-line dispatch in `events.lua`, not a redesign.
 
 Always available. These three load and unload plugins by name for one session;
 they are not how you manage extensions — the manager is, and it is in
-[every build](/docs/guides/extensions).
+[every build](../extensions).
 
 | command | does |
 | --- | --- |
@@ -449,7 +449,7 @@ the catalog index and each extension you pick over HTTPS.
 work on what the *loader* can see — the two roots and nothing else — so they
 cannot install `palette` or `finder` and then have it load, because what the
 manager installs lives in a store the loader does not read. See
-[extensions](/docs/guides/extensions) for the keys, the catalog and where everything lands.
+[extensions](../extensions) for the keys, the catalog and where everything lands.
 
 **Nothing here persists.** There is no registry, no manifest and no saved
 state: what you load this way is gone at exit, and the only thing that survives

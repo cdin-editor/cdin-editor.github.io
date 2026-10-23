@@ -4,6 +4,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/sections/Link.astro";
 import { BookOpenText } from "lucide-react";
 import { features, paragraph } from "@/data/about";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout>
@@ -24,7 +26,7 @@ import { features, paragraph } from "@/data/about";
                     and recompile-free.
                 </p>
                 <Link
-                    href="/docs"
+                    href={`${basePath}/docs`}
                     label="Learn more"
                     variant={`default`}
                     aTagClassName="p-4"
@@ -33,14 +35,14 @@ import { features, paragraph } from "@/data/about";
             </div>
             <div class="col-span-10 lg:col-span-5 relative overflow-hidden lg:border-l">
                 <img
-                    src="/cdin-icons/webp/cdin-glow-transparent-1024.webp"
+                    src={`${basePath}/cdin-icons/webp/cdin-glow-transparent-1024.webp`}
                     width="1980"
                     height="1080"
                     alt=""
                     class="z-20 animate-pulse"
                 />
                 <img
-                    src="/pattern-light.svg"
+                    src={`${basePath}/pattern-light.svg`}
                     height="1080"
                     width="1980"
                     alt="bg-pattern"

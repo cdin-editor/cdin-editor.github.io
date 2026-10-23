@@ -2,6 +2,8 @@
 import { ArrowDownToLineIcon, CodeXmlIcon, GitBranchPlus } from "lucide-react";
 import Link from "@/components/sections/Link.astro";
 import SectionTitle from "../layout/SectionTitle.astro";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <SectionTitle label={`echo "INFO" >>`} title="CDIN" />
@@ -36,7 +38,7 @@ import SectionTitle from "../layout/SectionTitle.astro";
     </p>
     <div class="mt-5 flex flex-wrap justify-center items-center gap-4">
         <Link
-            href="/download"
+            href={`${basePath}/download`}
             label="DOWNLOAD EDITOR"
             icon={ArrowDownToLineIcon}
             variant="default"

@@ -290,4 +290,4 @@ Lua changes under `data/core/` need no recompile; only C does. So the loop is
 `make` once, then edit and restart as many times as you like.
 
 [CONTRIBUTING.md](https://github.com/cdin-editor/cdin/blob/main/CONTRIBUTING.md) has the conventions and the PR checklist.
-[Troubleshooting](/docs/guides/troubleshooting) has what a specific failure means.
+[Troubleshooting](../troubleshooting) has what a specific failure means.

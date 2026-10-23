@@ -56,7 +56,7 @@ editor is broken" and "an extension misbehaves" stop being the same
 investigation.
 
 The contract cdin provides, and cdin-x may rely on, is
-[the extension contract](/docs/architecture/extension-contract). Read it before changing anything
+[the extension contract](../extension-contract). Read it before changing anything
 about `config.site_dir`, the loader or the theme registry.
 
 ## Boot
@@ -135,7 +135,7 @@ Then `core.init()`:
 installed before your config runs, so a key you set is one a plugin can override;
 and your config runs before plugins, so it can `require` a plugin's module but
 not its side effects. The argument for each is in
-[configuration](/docs/guides/configuration#when-it-runs-and-why-that-matters).
+[configuration](../../guides/configuration#when-it-runs-and-why-that-matters).
 
 **Step 3 is the load-bearing one for everything project-shaped.** The file list,
 the ignore rules and the git status all come from the working directory, so
@@ -163,7 +163,7 @@ and becomes part of the same tree rather than a layer above it.
 `RootView:attach_side_view` is the better interface and is the documented one;
 both cdin-x panels still split the active node, which is fine while there is one
 panel and a conflict the day there are two. See
-[side panels](/docs/architecture/extension-contract#side-panels).
+[side panels](../extension-contract#side-panels).
 
 **A node holds a list of views.** That is what `root:switch-to-pane-view-N` and
 `root:move-pane-view-*` reach, and it is why those names say *pane view*: the

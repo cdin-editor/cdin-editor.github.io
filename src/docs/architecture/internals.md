@@ -1,7 +1,7 @@
 # Internals
 
 A deeper look at the pieces you need if you are working on the C layer, the text
-pipeline, or the frame loop. [The overview](/docs/architecture/overview) has the split and the
+pipeline, or the frame loop. [The overview](../overview) has the split and the
 boot order; this page has the machinery.
 
 ## The C layer
@@ -184,7 +184,7 @@ Doc._after_load  = {}   -- fn(doc) after reading
 
 Plain lists, called with `ipairs`. They are the extension seam plugins prefer
 over wrapping `Doc.save`, because unloading is `table.remove` rather than a
-restore-everything dance. See [plugins](/docs/guides/plugins#document-hooks).
+restore-everything dance. See [plugins](../../guides/plugins#document-hooks).
 
 ### `reset_syntax`
 
