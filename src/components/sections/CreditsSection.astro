@@ -1,6 +1,6 @@
 ---
 import Philosophy from "./Philosophy.astro";
-import Contributors from "./Contributors.astro";
+import Faqs from "@/components/sections/faqs.astro";
 ---
 
 <section class="mt-8 relative border-y">
@@ -23,7 +23,7 @@ import Contributors from "./Contributors.astro";
                 <div class="not-last:border-r duration-150 hover:bg-accent/40 dark:hover:bg-accent/30"></div>
             ))}
     </div>
-    <Contributors />
+    <Faqs />
     <div class="grid border-t grid-cols-4 h-10">
         {Array(4)
             .fill(null)
