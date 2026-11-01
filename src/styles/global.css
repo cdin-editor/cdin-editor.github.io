@@ -168,3 +168,7 @@ body {
 .markdown-content p {
     margin-bottom: 1rem;
 }
+
+::selection {
+    background-color: rgba(127, 0, 255, 50%);
+}
