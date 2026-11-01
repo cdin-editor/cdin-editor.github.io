@@ -89,9 +89,9 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
             <!-- <PlusIcon className="absolute size-4 right-[-9.4px] bottom-[-9.4px]" /> -->
         </div>
         <div class="text-muted-foreground mt-4 sm:p-5 p-3 text-justify wrap-break-word flex">
-            <p class="text-wrap text-center justify-center flex flex-wrap gap-2 md:text-sm text-xs">
+            <p class="text-wrap text-center justify-center flex flex-wrap md:text-sm text-xs">
                 {paragraph.split(" ").map((word) => (
-                    <span class="hover:text-primary cursor-default duration-75">
+                    <span class="hover:text-primary cursor-default duration-75 p-1">
                         {word}
                     </span>
                 ))}
