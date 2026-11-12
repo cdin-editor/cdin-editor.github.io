@@ -1,21 +1,86 @@
 ---
-import { copyrightlinks } from "@/data/footer";
+import { copyrightlinks, footerLinks } from "@/data/footer";
 import { CopyrightIcon } from "lucide-react";
 ---
 
 <footer class="border-t">
-  <div class="max-w-7xl mx-auto border-x pb-8">
-    <img
-      src="/cdin-icons"
-      alt="cdin-portrait"
-      width="1980"
-      height="1080"
-      class="w-50 aspect-square"
-    />
-    <div class="border-t py-8 px-4 border-b flex flex-wrap items-center justify-between gap-4">
-      <p class="text-muted-foreground flex items-center gap-1 text-xs">
-        <CopyrightIcon className="  size-3" /> 2026 cdin contributors. Released
-        under the GNU General Public License v3.0.
+  <div class="max-w-7xl mx-auto border-x">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]"
+    >
+      <div class="border-b p-5 sm:border-r sm:p-6 lg:border-b-0">
+        <a href="/" class="flex w-fit items-center gap-3">
+          <img
+            src="/cdin-icons/svg/cdin-original-transparent.svg"
+            alt=""
+            width="512"
+            height="512"
+            class="size-10 aspect-square"
+          />
+          <span class="text-xl font-bold tracking-tighter">cdin</span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">
+          A vim-like, keyboard-driven text editor built on a small C core and
+          readable Lua.
+        </p>
+        <p class="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
+          <span class="size-1.5 bg-green-600" aria-hidden="true"></span>
+          pre-release
+        </p>
+      </div>
+
+      {
+        footerLinks.map((section, index) => (
+          <nav
+            class:list={[
+              "p-5 sm:p-6",
+              index === 0 && "border-b lg:border-r lg:border-b-0",
+              index === 1 && "border-b sm:border-r sm:border-b-0",
+            ]}
+            aria-labelledby={`footer-${section.title}`}
+          >
+            <h2
+              id={`footer-${section.title}`}
+              class="text-xs text-muted-foreground"
+            >
+              <span class="text-muted-foreground/60">~/</span>
+              {section.title}
+            </h2>
+            <ul class="mt-4 space-y-2">
+              {section.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    class="text-sm text-muted-foreground hover:text-foreground duration-150"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div
+      class="border-t border-b px-5 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-4"
+    >
+      <p
+        class="text-muted-foreground flex flex-wrap items-center gap-1 text-xs"
+      >
+        <CopyrightIcon className="size-3" />
+        <span>
+          2026 cdin contributors. Released under the{" "}
+          <a
+            href="/docs/others/license"
+            class="underline underline-offset-2 hover:text-foreground duration-150"
+          >
+            GNU General Public License v3.0
+          </a>.
+        </span>
       </p>
       <ul class="flex items-center gap-4 text-xs">
         {copyrightlinks.map((link) => (

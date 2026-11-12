@@ -4,25 +4,83 @@ export interface FooterLink {
   external?: boolean;
 }
 
-export const footerLinks: FooterLink[] = [
+export interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+export const footerLinks: FooterSection[] = [
   {
-    label: "GitHub",
-    href: "https://github.com/cdin-editor",
-    external: true,
+    title: "docs",
+    links: [
+      {
+        label: "overview",
+        href: "/docs/architecture/overview",
+      },
+      {
+        label: "getting started",
+        href: "/docs/guides/getting-started",
+      },
+      {
+        label: "extension contract",
+        href: "/docs/architecture/extension-contract",
+      },
+      {
+        label: "plugins",
+        href: "/docs/guides/plugins",
+      },
+      {
+        label: "buildings",
+        href: "/docs/guides/building",
+      },
+    ],
   },
   {
-    label: "Docs",
-    href: "/docs",
+    title: "project",
+    links: [
+      {
+        label: "docs",
+        href: "/docs",
+      },
+      {
+        label: "about",
+        href: "/about",
+      },
+      {
+        label: "download",
+        href: "/download",
+      },
+    ],
   },
   {
-    label: "Changelog",
-    href: "https://github.com/cdin-editor/cdin/blob/main/CHANGELOG.md",
-    external: true,
-  },
-  {
-    label: "Contribute",
-    href: "https://github.com/cdin-editor/cdin/blob/main/CONTRIBUTING.md",
-    external: true,
+    title: "community",
+    links: [
+      {
+        label: "organization",
+        href: "https://github.com/cdin-editor",
+        external: true,
+      },
+      {
+        label: "repository",
+        href: "https://github.com/cdin-editor/cdin",
+        external: true,
+      },
+      {
+        label: "changelog",
+        href: "https://github.com/cdin-editor/cdin/blob/main/CHANGELOG.md",
+        external: true,
+      },
+      {
+        label: "issues",
+        href: "https://github.com/cdin-editor/cdin/issues",
+        external: true,
+      },
+      // {
+      //   label: "discussions",
+      //   href: "https://github.com/cdin-editor/cdin/discussions",
+      //   external: true,
+      // },
+    ],
   },
 ];
 
@@ -40,3 +98,4 @@ export const copyrightlinks: FooterLink[] = [
     href: "/docs/others/security",
   },
 ];
+
