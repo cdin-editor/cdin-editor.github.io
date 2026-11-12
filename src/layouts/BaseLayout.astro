@@ -5,7 +5,7 @@ import Footer from "@/components/layout/footer.astro";
 import ThemeScript from "@/components/layout/ThemeScript.astro";
 
 interface Props {
-    title?: string;
+  title?: string;
 }
 
 const { title = "cdin" } = Astro.props;
@@ -13,30 +13,30 @@ const basePath = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <ThemeScript />
-        <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
-        <link rel="icon" href={`${basePath}favicon.ico`} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
-            rel="stylesheet"
-        />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-    </head>
-    <body class="min-h-dvh overflow-x-clip flex flex-col fira-code-style">
-        <Navbar />
-        <main class="max-w-7xl mx-auto flex px-2 md:px-8 flex-1 flex-col w-full">
-            <div class="flex flex-1 flex-col w-full">
-                <div class="border-x flex flex-1 w-full h-full">
-                    <slot />
-                </div>
-            </div>
-        </main>
-        <Footer />
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <ThemeScript />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-dvh overflow-x-clip flex flex-col fira-code-style">
+    <Navbar />
+    <main class="max-w-7xl mx-auto flex px-2 md:px-8 flex-1 flex-col w-full">
+      <div class="flex flex-1 flex-col w-full">
+        <div class="border-x flex flex-1 w-full h-full">
+          <slot />
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
