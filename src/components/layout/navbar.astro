@@ -12,77 +12,75 @@ const { url } = Astro;
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
 
-const isActive = (href: string) => {
-    const path = href === "/" ? (basePath || "/") : `${basePath}${href}`;
-    return currentPath === path || (href !== "/" && currentPath.startsWith(`${path}/`));
-};
+const isActive = (href: string) =>
+  currentPath === href || currentPath.startsWith(`${href}/`);
 
 const isDocs = isActive("/docs");
 const docsSections = isDocs ? await getDocsSections() : [];
 ---
 
-<header class="sticky border-b top-0 z-50 bg-background">
-    <nav class="max-w-7xl mx-auto border-x">
-        <ul class="flex items-stretch justify-between gap-4">
-            <div class="flex items-stretch">
-                <a class="border-r px-4" href={`${basePath}/`}>
-                    <img
-                        src={`${basePath}/cdin-icons/svg/cdin-original-transparent.svg`}
-                        alt="cdin-original-transparent.svg"
-                        width="1980"
-                        height="1080"
-                        class="aspect-square w-16 flex items-center justify-center"
-                    />
-                </a>
-                {navLinks.map((link) => (
-                    <li class="md:block hidden">
-                        <a
-                            class={`inline-block duration-150 opacity-60 hover:opacity-100 hover:bg-accent/40 p-5 ${isActive(link.href) ? "text-primary opacity-100" : ""}`}
-                            href={link.href}
-                        >
-                            {link.title}
-                        </a>
-                    </li>
-                ))}
-            </div>
-            <div class="md:flex items-stretch hidden">
-                <li class="lg:flex hidden items-center justify-center">
-                    <Link
-                        label={tag_name}
-                        href="https://github.com/cdin-editor/cdin/releases"
-                        variant={`ghost`}
-                        buttonClassName="m-0 h-full border-0 ring-0 hover:bg-accent/40"
-                        aTagClassName="m-0 h-full font-normal opacity-70 duration-150 hover:opacity-100"
-                        target="_blank"
-                    />
-                </li>
-                <li class="flex">
-                    <ModeToggle client:visible />
-                </li>
-                <li>
-                    <a
-                        class="p-5 flex items-center bg-primary dark:text-black text-white gap-2 hover:opacity-95 duration-100"
-                        href="https://github.com/cdin-editor/cdin"
-                        target="_blank"
-                    >
-                        <img
-                            src={`${basePath}/github.svg`}
-                            alt="github.svg"
-                            width="1980"
-                            height="1080"
-                            class="aspect-square w-6 invert dark:invert-0"
-                        />
-                        GitHub
-                    </a>
-                </li>
-            </div>
-            <li class="md:hidden flex">
-                <MobileNav
-                    client:visible
-                    docsSections={docsSections}
-                    currentPath={currentPath}
-                />
-            </li>
-        </ul>
-    </nav>
+<header class="sticky border-b top-0 z-100 bg-background">
+  <nav class="max-w-7xl mx-auto border-x">
+    <ul class="flex items-stretch justify-between gap-4">
+      <div class="flex items-stretch">
+        <a class="border-r px-4" href="/">
+          <img
+            src="/cdin-icons/svg/cdin-original-transparent.svg"
+            alt="cdin-original-transparent.svg"
+            width="1980"
+            height="1080"
+            class="aspect-square w-16 flex items-center justify-center"
+          />
+        </a>
+        {navLinks.map((link) => (
+          <li class="md:block hidden">
+            <a
+              class={`inline-block duration-150 opacity-60 hover:opacity-100 hover:bg-accent/40 p-5 ${isActive(link.href) ? "text-primary opacity-100" : ""}`}
+              href={link.href}
+            >
+              {link.title}
+            </a>
+          </li>
+        ))}
+      </div>
+      <div class="md:flex items-stretch hidden">
+        <li class="lg:flex hidden items-center justify-center">
+          <Link
+            label={tag_name}
+            href="https://github.com/cdin-editor/cdin/releases"
+            variant={`ghost`}
+            buttonClassName="m-0 h-full border-0 ring-0 hover:bg-accent/40"
+            aTagClassName="m-0 h-full font-normal opacity-70 duration-150 hover:opacity-100"
+            target="_blank"
+          />
+        </li>
+        <li class="flex">
+          <ModeToggle client:visible />
+        </li>
+        <li>
+          <a
+            class="p-5 flex items-center bg-primary dark:text-black text-white gap-2 hover:opacity-95 duration-100"
+            href="https://github.com/cdin-editor/cdin"
+            target="_blank"
+          >
+            <img
+              src="/github.svg"
+              alt="github.svg"
+              width="1980"
+              height="1080"
+              class="aspect-square w-6 invert dark:invert-0"
+            />
+            GitHub
+          </a>
+        </li>
+      </div>
+      <li class="md:hidden flex">
+        <MobileNav
+          client:visible
+          docsSections={docsSections}
+          currentPath={currentPath}
+        />
+      </li>
+    </ul>
+  </nav>
 </header>
