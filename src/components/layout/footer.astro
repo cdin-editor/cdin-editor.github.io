@@ -5,7 +5,7 @@ import { copyrightlinks, footerLinks } from "@/data/footer";
 <footer class="border-t">
   <div class="max-w-7xl mx-auto border-x">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-      <div class="border-b p-5 sm:border-r sm:p-6 lg:border-b-0 flex flex-col">
+      <div class="p-5 sm:p-6 flex flex-col">
         <a href="/" class="w-fit text-xl font-bold tracking-tighter">
           cdin
         </a>
@@ -22,15 +22,8 @@ import { copyrightlinks, footerLinks } from "@/data/footer";
         </p>
       </div>
 
-      {footerLinks.map((section, index) => (
-        <nav
-          class:list={[
-            "group/card p-5 sm:p-6",
-            index === 0 && "border-b lg:border-r lg:border-b-0",
-            index === 1 && "border-b sm:border-r sm:border-b-0",
-          ]}
-          aria-labelledby={`footer-${section.title}`}
-        >
+      {footerLinks.map((section) => (
+        <nav class="p-5 sm:p-6" aria-labelledby={`footer-${section.title}`}>
           <h2
             id={`footer-${section.title}`}
             class="text-xs text-muted-foreground"
@@ -38,14 +31,14 @@ import { copyrightlinks, footerLinks } from "@/data/footer";
             <span class="text-muted-foreground/60">~/</span>
             {section.title}
           </h2>
-          <ul class="mt-4 space-y-2">
+          <ul class="mt-2 [&:has(a:hover)>li>a:not(:hover)]:opacity-70">
             {section.links.map((link) => (
               <li>
                 <a
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
-                  class="text-sm text-muted-foreground hover:text-foreground transition-opacity duration-150 group-hover/card:opacity-70 group-hover/card:hover:opacity-100"
+                  class="block py-1 text-sm text-muted-foreground hover:text-foreground transition-opacity duration-150"
                 >
                   {link.label}
                 </a>
