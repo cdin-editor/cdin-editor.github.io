@@ -6,10 +6,19 @@ import { GitCommit } from "lucide-react";
 
 const fallbackContributors = backup as Contributor[];
 
+const token = import.meta.env.GITHUB_TOKEN;
+
 const contributors = await (async (): Promise<Contributor[]> => {
   try {
     const res = await fetch(
       "https://api.github.com/repos/cdin-editor/cdin/contributors?per_page=100",
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        signal: AbortSignal.timeout(5000),
+      },
     );
 
     if (!res.ok) {
@@ -32,9 +41,18 @@ const contributors = await (async (): Promise<Contributor[]> => {
   }
 })();
 
-const people = [...contributors].sort(
-  (a, b) => b.contributions - a.contributions,
-);
+const isBot = (person: Contributor) =>
+  person.type === "Bot" || person.login.endsWith("[bot]");
+
+const people = [...contributors]
+  .filter((person) => !isBot(person))
+  .sort((a, b) => b.contributions - a.contributions);
+
+const avatarUrl = (url: string) => {
+  const src = new URL(url);
+  src.searchParams.set("s", "160");
+  return src.toString();
+};
 
 const totalContributions = people.reduce(
   (total, contributor) => total + contributor.contributions,
@@ -51,7 +69,7 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
     Contributors
   </h2>
   <div class="grid grid-cols-12">
-    <div class="col-span-12 flex flex-col justify-center gap-6 p-6 md:col-span-4 md:p-8">
+    <div class="col-span-12 flex flex-col justify-center gap-6 border-r p-6 md:col-span-4 md:p-8">
       <p class="text-muted-foreground">
         From bug fixes to new features—your input matters for cdin's next
         release. Whether reporting issues, submitting patches, or enhancing
@@ -86,10 +104,10 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
         label="CONTRIBUTE TO PROJECT"
       />
     </div>
-    <div class="col-span-12 md:col-span-8">
+    <div class="col-span-12 flex items-center p-6 md:col-span-8 md:p-8">
       <ul
         aria-labelledby="contributors-heading"
-        class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8"
+        class="grid w-full grid-cols-[repeat(auto-fill,minmax(72px,1fr))] gap-2"
       >
         {people.map((person) => (
           <li>
@@ -98,14 +116,16 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${person.login}, ${person.contributions} contributions`}
-              class="block"
+              class="group block aspect-square overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset"
             >
               <img
-                src={person.avatar_url}
+                src={avatarUrl(person.avatar_url)}
                 alt=""
+                width="160"
+                height="160"
                 loading="lazy"
                 decoding="async"
-                class="aspect-square w-full object-cover"
+                class="h-full w-full object-cover grayscale transition-[filter] duration-200 group-hover:grayscale-0 group-focus-visible:grayscale-0 motion-reduce:transition-none"
               />
             </a>
           </li>
