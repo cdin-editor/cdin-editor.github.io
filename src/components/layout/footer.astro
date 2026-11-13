@@ -54,12 +54,12 @@ import { copyrightlinks, footerLinks } from "@/data/footer";
         © 2026 cdin contributors. Released under the GNU General Public License
         v3.0
       </p>
-      <ul class="ml-auto flex items-center gap-4 text-xs [&:has(a:hover)>li>a:not(:hover)]:opacity-70">
+      <ul class="ml-auto flex items-center gap-4 text-xs">
         {copyrightlinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="text-muted-foreground hover:text-foreground transition-opacity duration-150"
+              class="text-muted-foreground hover:text-foreground duration-150"
             >
               {link.label}
             </a>
