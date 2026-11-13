@@ -48,6 +48,9 @@ const people = [...contributors]
   .filter((person) => !isBot(person))
   .sort((a, b) => b.contributions - a.contributions);
 
+const previewCount = 4;
+const extraCount = Math.max(people.length - previewCount, 0);
+
 const avatarUrl = (url: string) => {
   const src = new URL(url);
   src.searchParams.set("s", "160");
@@ -106,17 +109,22 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
     </div>
     <div class="col-span-12 flex items-center p-6 md:col-span-8 md:p-8">
       <ul
+        id="contributors-grid"
         aria-labelledby="contributors-heading"
-        class="grid w-full grid-cols-[repeat(auto-fill,minmax(72px,1fr))] gap-2"
+        class="grid w-full grid-cols-3 gap-2 sm:grid-cols-5"
       >
-        {people.map((person) => (
-          <li>
+        {people.map((person, index) => (
+          <li
+            class="contributor-tile group relative aspect-square"
+            hidden={index >= previewCount}
+            data-contributor-extra={index >= previewCount ? "true" : undefined}
+          >
             <a
               href={person.html_url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${person.login}, ${person.contributions} contributions`}
-              class="group block aspect-square overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset"
+              class="block h-full overflow-hidden bg-muted transition-[margin] duration-150 ease-out group-hover:mx-2.5 group-focus-within:mx-2.5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset motion-reduce:transition-none"
             >
               <img
                 src={avatarUrl(person.avatar_url)}
@@ -125,12 +133,144 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
                 height="160"
                 loading="lazy"
                 decoding="async"
-                class="h-full w-full object-cover grayscale transition-[filter] duration-200 group-hover:grayscale-0 group-focus-visible:grayscale-0 motion-reduce:transition-none"
+                class="h-full w-full object-cover grayscale transition-[filter] duration-200 group-hover:grayscale-0 group-focus-within:grayscale-0 motion-reduce:transition-none"
               />
             </a>
           </li>
         ))}
+        {extraCount > 0 && (
+          <li>
+            <button
+              type="button"
+              id="contributors-toggle"
+              data-contributors-toggle
+              data-contributors-total={people.length}
+              aria-expanded="false"
+              aria-controls="contributors-grid"
+              aria-label={`Show all ${people.length} contributors`}
+              class="flex aspect-square w-full flex-col items-center justify-center gap-1 border text-muted-foreground transition-colors duration-150 hover:bg-accent/50 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset dark:hover:bg-accent/30"
+            >
+              <span
+                data-contributors-count
+                class="text-2xl font-bold tracking-tighter tabular-nums"
+              >
+                +{extraCount}
+              </span>
+              <span
+                data-contributors-label
+                class="text-[10px] font-semibold tracking-widest"
+              >
+                SHOW ALL
+              </span>
+            </button>
+          </li>
+        )}
       </ul>
     </div>
   </div>
 </section>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(
+    "[data-contributors-toggle]",
+  );
+
+  if (toggle) {
+    const grid = document.getElementById(
+      toggle.getAttribute("aria-controls") ?? "",
+    );
+    const extras = grid
+      ? Array.from(
+          grid.querySelectorAll<HTMLElement>("[data-contributor-extra]"),
+        )
+      : [];
+    const count = toggle.querySelector<HTMLElement>(
+      "[data-contributors-count]",
+    );
+    const label = toggle.querySelector<HTMLElement>(
+      "[data-contributors-label]",
+    );
+    const total = Number(toggle.dataset.contributorsTotal ?? extras.length + 4);
+
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      const next = !expanded;
+
+      toggle.setAttribute("aria-expanded", String(next));
+      toggle.setAttribute(
+        "aria-label",
+        next ? "Show fewer contributors" : `Show all ${total} contributors`,
+      );
+
+      for (const extra of extras) {
+        extra.hidden = !next;
+      }
+
+      if (count) count.textContent = next ? "−" : `+${extras.length}`;
+      if (label) label.textContent = next ? "SHOW LESS" : "SHOW ALL";
+    });
+  }
+</script>
+
+<style>
+  .contributor-tile::before,
+  .contributor-tile::after {
+    content: "";
+    position: absolute;
+    inset-block: -0.5rem;
+    width: 0.5625rem;
+    border-block: 2px solid var(--foreground);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 160ms ease-out,
+      translate 160ms ease-out;
+  }
+
+  .contributor-tile::before {
+    left: 0;
+    border-left: 2px solid var(--foreground);
+    translate: -4px 0;
+  }
+
+  .contributor-tile::after {
+    right: 0;
+    border-right: 2px solid var(--foreground);
+    translate: 4px 0;
+  }
+
+  .contributor-tile:hover::before,
+  .contributor-tile:focus-within::before,
+  .contributor-tile:hover::after,
+  .contributor-tile:focus-within::after {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  [data-contributor-extra]:not([hidden]) {
+    animation: contributor-reveal 200ms ease-out both;
+  }
+
+  @keyframes contributor-reveal {
+    from {
+      opacity: 0;
+      translate: 0 6px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contributor-tile::before,
+    .contributor-tile::after {
+      transition: none;
+      translate: 0 0;
+    }
+
+    [data-contributor-extra]:not([hidden]) {
+      animation: none;
+    }
+  }
+</style>
