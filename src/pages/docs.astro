@@ -1,8 +1,10 @@
 ---
-import { Content } from "@/data/README.md";
+import { Content, getHeadings } from "@/data/README.md";
 import DocsLayout from "@/layouts/DocsLayout.astro";
+
+const headings = getHeadings();
 ---
 
-<DocsLayout>
+<DocsLayout headings={headings}>
   <Content />
 </DocsLayout>

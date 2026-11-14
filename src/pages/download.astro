@@ -9,8 +9,6 @@ import {
   XIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout>
@@ -156,11 +154,9 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       }
     </style>
 
-    <div class="relative">
-      <div class="flex items-center justify-between border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
-        <span id="platforms" class="text-xs text-muted-foreground font-thin">
-          PLATFORMS
-        </span>
+    <div id="platforms" class="relative">
+      <div class="flex items-center justify-between gap-2 border-y px-4 sm:px-6 py-4 hover:bg-accent/50 dark:hover:bg-accent/30 duration-150 flex-wrap">
+        <span class="text-xs text-muted-foreground font-thin">PLATFORMS</span>
         <span class="text-xs text-muted-foreground font-thin">
           REQUIREMENT - ELECTRICITY (optional)
         </span>

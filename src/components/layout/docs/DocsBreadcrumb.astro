@@ -1,0 +1,82 @@
+---
+import type { DocsSection } from "@/lib/docs";
+import { ChevronRight } from "lucide-react";
+
+interface Props {
+  sections: DocsSection[];
+  currentPath: string;
+}
+
+const { sections, currentPath } = Astro.props;
+
+type Crumb = { label: string; href?: string };
+
+function getCrumbs(path: string, secs: DocsSection[]): Crumb[] {
+  if (path === "/docs") {
+    return [{ label: "Docs", href: "/docs" }, { label: "README / welcome" }];
+  }
+  const slug = path.replace(/^\/docs\//, "");
+  const sectionName = slug.split("/")[0] ?? slug;
+  let docTitle = slug.split("/").slice(1).join("/") || slug;
+  for (const sec of secs) {
+    if (sec.name !== sectionName) continue;
+    const item = sec.items.find((i) => i.href === slug);
+    if (item) docTitle = item.label;
+  }
+  const firstInSection = secs.find((s) => s.name === sectionName)?.items[0]?.href;
+  const sectionHref = firstInSection ? `/docs/${firstInSection}` : "/docs";
+  return [
+    { label: "Docs", href: "/docs" },
+    { label: sectionName, href: sectionHref },
+    { label: docTitle },
+  ];
+}
+
+const crumbs = getCrumbs(currentPath, sections);
+---
+
+<nav aria-label="breadcrumb" data-slot="breadcrumb">
+  <ol
+    data-slot="breadcrumb-list"
+    class="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground wrap-break-word sm:text-sm"
+  >
+    {crumbs.map((crumb, i) => {
+      const last = i === crumbs.length - 1;
+      return (
+        <>
+          <li data-slot="breadcrumb-item" class="inline-flex items-center gap-1">
+            {last || !crumb.href ? (
+              <span
+                data-slot="breadcrumb-page"
+                role="link"
+                aria-disabled="true"
+                aria-current="page"
+                class="font-normal text-foreground"
+              >
+                {crumb.label}
+              </span>
+            ) : (
+              <a
+                data-slot="breadcrumb-link"
+                href={crumb.href}
+                class="transition-colors hover:text-foreground"
+              >
+                {crumb.label}
+              </a>
+            )}
+          </li>
+          {!last && (
+            <li
+              data-slot="breadcrumb-separator"
+              role="presentation"
+              aria-hidden="true"
+              class="[&>svg]:size-3.5"
+            >
+              <ChevronRight />
+            </li>
+          )}
+        </>
+      );
+    })}
+  </ol>
+</nav>

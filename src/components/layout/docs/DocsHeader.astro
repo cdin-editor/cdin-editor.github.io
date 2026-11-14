@@ -1,0 +1,49 @@
+---
+import Link from "@/components/sections/Link.astro";
+import { ModeToggle } from "@/components/layout/ModeToggle";
+import { DocsSearch } from "@/components/layout/DocsSearch";
+import type { DocsSection, DocsSearchEntry } from "@/lib/docs";
+
+interface Props {
+  sections: DocsSection[];
+  searchEntries: DocsSearchEntry[];
+}
+
+const { sections, searchEntries } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-t bg-background">
+  <nav class="mx-auto flex w-full max-w-7xl items-stretch justify-between border-x">
+    <a
+      href="/"
+      class="flex shrink-0 items-center border-r px-4"
+      aria-label="cdin home"
+    >
+      <img
+        src="/cdin-icons/svg/cdin-original-transparent.svg"
+        alt=""
+        width="1980"
+        height="1080"
+        class="aspect-square w-16"
+      />
+    </a>
+
+    <div class="hidden min-w-0 flex-1 items-center px-2 md:flex md:px-4">
+      <DocsSearch client:visible searchEntries={searchEntries} />
+    </div>
+
+    <div class="flex shrink-0 items-stretch">
+      <div class="flex items-center px-2 md:hidden">
+        <DocsSearch client:visible searchEntries={searchEntries} />
+      </div>
+      <ModeToggle client:visible />
+      <Link
+        href="/download"
+        label="Download"
+        variant="ghost"
+        buttonClassName="m-0 hidden h-full rounded-none border-0 border-l border-border ring-0 hover:bg-accent/40 md:inline-flex"
+        aTagClassName="flex h-full items-center px-5 text-xs font-semibold tracking-widest md:px-6"
+      />
+    </div>
+  </nav>
+</header>

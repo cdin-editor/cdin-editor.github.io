@@ -1,0 +1,51 @@
+---
+import type { DocsSection } from "@/lib/docs";
+
+interface Props {
+  sections: DocsSection[];
+  currentPath: string;
+}
+
+const { sections, currentPath } = Astro.props;
+
+const linkClass = (active: boolean) =>
+  [
+    "group flex w-full items-start border-l-2 px-5 py-2 text-sm leading-snug transition-colors",
+    active
+      ? "border-foreground bg-accent/30 text-foreground"
+      : "border-transparent text-muted-foreground hover:border-border hover:bg-accent/15 hover:text-foreground",
+  ].join(" ");
+---
+
+<aside class="relative hidden border-b lg:col-span-3 lg:block">
+  <div class="sticky top-16 z-40 max-h-[calc(100dvh-4rem)] overflow-y-auto py-5 pr-2">
+    <nav aria-label="Documentation">
+      <div class="mb-5">
+        <p class="px-5 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
+          README
+        </p>
+        <a href="/docs" class={linkClass(currentPath === "/docs")}>
+          <span class="min-w-0 pl-2 break-words">README / welcome</span>
+        </a>
+      </div>
+
+      {sections.map((section) => (
+        <div class="mb-5">
+          <p class="px-5 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
+            {section.name}
+          </p>
+          <div class="flex flex-col">
+            {section.items.map((item) => {
+              const href = `/docs/${item.href}`;
+              return (
+                <a href={href} class={linkClass(currentPath === href)}>
+                  <span class="min-w-0 pl-2 break-words">{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </nav>
+  </div>
+</aside>

@@ -1,53 +1,59 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Link from "@/components/sections/Link.astro";
-import { getDocsSections } from "@/lib/docs";
+import readmeRaw from "@/data/README.md?raw";
+import { getDocsSections, getDocsSearchEntries } from "@/lib/docs";
+import DocsHead from "@/components/layout/docs/DocsHead.astro";
+import DocsHeader from "@/components/layout/docs/DocsHeader.astro";
+import DocsSidebar from "@/components/layout/docs/DocsSidebar.astro";
+import DocsFooter from "@/components/layout/docs/DocsFooter.astro";
+import DocsBreadcrumb from "@/components/layout/docs/DocsBreadcrumb.astro";
+import { DocsMobileSidebar } from "@/components/layout/docs/DocsMobileSidebar";
+import { DocsToc } from "@/components/layout/docs/DocsToc";
 
 const sections = await getDocsSections();
+const searchEntries = await getDocsSearchEntries(readmeRaw);
 
 const { url } = Astro;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-const docsPath = `${basePath}/docs`;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
+
+interface Props {
+  title?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title = "cdin", headings = [] } = Astro.props;
 ---
 
-<BaseLayout>
-  <section class="grid grid-cols-12 w-full">
-    <div class="md:col-span-3 md:block hidden relative overflow-x-clip">
-      <div class="sticky top-16.25 left-0 right-0 z-40 py-4">
-        <div class="flex flex-col pb-1">
-          <span class="px-6 py-2 text-xs font-semibold tracking-widest uppercase">
-            Welcome
-          </span>
-          <Link
-            href={`/docs`}
-            label={`welcome`}
-            variant={`link`}
-            buttonClassName={`text-start p-0 m-0 break-words-all`}
-            aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `/docs` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
-          />
-        </div>
-        {sections.map((section) => (
-          <div class="flex flex-col">
-            <span class="px-6 py-2 text-xs font-semibold tracking-widest uppercase">
-              {section.name}
-            </span>
-            {section.items.map((item) => (
-              <Link
-                href={`/docs/${item.href}`}
-                label={item.label}
-                variant={`link`}
-                buttonClassName={`text-start p-0 m-0 break-words-all`}
-                aTagClassName={`w-full py-2 pl-8 hover:pl-10 duration-150 hover:text-primary ${currentPath === `/docs/${item.href}` ? "text-primary pl-10 underline" : "text-muted-foreground"}`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+<html lang="en">
+  <DocsHead title={title} />
+  <body class="min-h-dvh overflow-x-clip flex flex-col fira-code-style">
+    <DocsHeader sections={sections} searchEntries={searchEntries} />
 
-    <article class="prose dark:prose-invert md:col-span-9 col-span-12 md:border-l p-6 max-w-full overflow-x-hidden">
-      <slot />
-    </article>
-  </section>
-</BaseLayout>
+    <main class="mx-auto w-full max-w-7xl flex-1 px-2 md:px-8">
+      <div class="flex h-full min-h-full w-full border-x">
+        <section class="grid w-full grid-cols-12">
+          <DocsSidebar sections={sections} currentPath={currentPath} />
+
+          <article class="col-span-12 min-w-0 overflow-x-clip px-2 py-6 lg:col-span-6 lg:border-l md:p-6">
+            <div class="mb-6 flex items-center gap-3 border-b border-border pb-4 md:mb-8">
+              <div class="lg:hidden">
+                <DocsMobileSidebar
+                  client:visible
+                  sections={sections}
+                  currentPath={currentPath}
+                />
+              </div>
+              <DocsBreadcrumb sections={sections} currentPath={currentPath} />
+            </div>
+            <div class="docs-prose">
+              <slot />
+            </div>
+
+            <DocsFooter />
+          </article>
+
+          <DocsToc client:visible headings={headings} />
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
