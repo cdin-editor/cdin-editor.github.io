@@ -12,10 +12,10 @@ const { sections } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 border-b border-t bg-background">
-  <nav class="mx-auto flex h-14 w-full max-w-7xl items-stretch border-x">
+  <nav class="mx-auto flex w-full max-w-7xl items-stretch border-x">
     <a
       href="/"
-      class="flex shrink-0 items-center border-r px-3 md:px-4"
+      class="flex shrink-0 items-center border-r px-4"
       aria-label="cdin home"
     >
       <img
@@ -23,7 +23,7 @@ const { sections } = Astro.props;
         alt=""
         width="1980"
         height="1080"
-        class="aspect-square w-10 md:w-12"
+        class="aspect-square w-16"
       />
     </a>
 
@@ -38,7 +38,7 @@ const { sections } = Astro.props;
         label="Download"
         variant="ghost"
         buttonClassName="m-0 h-full rounded-none border-0 border-l border-border ring-0 hover:bg-accent/40"
-        aTagClassName="h-full px-3 text-xs font-semibold tracking-widest md:px-5 md:text-sm"
+        aTagClassName="flex h-full items-center px-5 text-xs font-semibold tracking-widest md:px-6"
       />
     </div>
   </nav>
