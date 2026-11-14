@@ -124,7 +124,7 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${person.login}, ${person.contributions} contributions`}
-              class="block h-full overflow-hidden bg-muted transition-[margin] duration-150 ease-out group-hover:mx-2.5 group-focus-within:mx-2.5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset motion-reduce:transition-none"
+              class="block h-full overflow-hidden bg-muted transition-[margin] duration-150 ease-out md:group-hover:mx-2.5 md:group-focus-within:mx-2.5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset motion-reduce:transition-none"
             >
               <img
                 src={avatarUrl(person.avatar_url)}
@@ -133,7 +133,7 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
                 height="160"
                 loading="lazy"
                 decoding="async"
-                class="h-full w-full object-cover grayscale transition-[filter] duration-200 group-hover:grayscale-0 group-focus-within:grayscale-0 motion-reduce:transition-none"
+                class="h-full w-full object-cover grayscale transition-[filter] duration-200 md:group-hover:grayscale-0 md:group-focus-within:grayscale-0 motion-reduce:transition-none"
               />
             </a>
           </li>
@@ -239,12 +239,14 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
     translate: 4px 0;
   }
 
-  .contributor-tile:hover::before,
-  .contributor-tile:focus-within::before,
-  .contributor-tile:hover::after,
-  .contributor-tile:focus-within::after {
-    opacity: 1;
-    translate: 0 0;
+  @media (min-width: 48rem) {
+    .contributor-tile:hover::before,
+    .contributor-tile:focus-within::before,
+    .contributor-tile:hover::after,
+    .contributor-tile:focus-within::after {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 
   [data-contributor-extra]:not([hidden]) {
