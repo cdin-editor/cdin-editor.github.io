@@ -1,5 +1,4 @@
 ---
-import Link from "@/components/sections/Link.astro";
 import type { DocsSection } from "@/lib/docs";
 
 interface Props {
@@ -9,48 +8,44 @@ interface Props {
 
 const { sections, currentPath } = Astro.props;
 
-const navButtonClass =
-  "justify-start border-x-0 border-b border-t-0 border-accent p-0 m-0 break-words-all hover:no-underline";
-const navTagClass = (href: string) =>
-  `w-fit py-2 duration-150 hover:text-primary pl-8 ${currentPath === href ? "text-primary" : "text-muted-foreground"}`;
+const linkClass = (active: boolean) =>
+  [
+    "group flex w-full items-start border-l-2 px-5 py-2 text-sm leading-snug transition-colors",
+    active
+      ? "border-foreground bg-accent/30 text-foreground"
+      : "border-transparent text-muted-foreground hover:border-border hover:bg-accent/15 hover:text-foreground",
+  ].join(" ");
 ---
 
-<div class="relative hidden overflow-x-clip md:col-span-3 md:block border-b">
-  <div class="sticky top-16 z-40 py-4">
-    <div class="flex flex-col pb-1">
-      <div class="flex items-center">
-        <h1 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
+<aside class="relative hidden border-b md:col-span-3 md:block">
+  <div class="sticky top-16 z-40 max-h-[calc(100dvh-4rem)] overflow-y-auto py-5 pr-2">
+    <nav aria-label="Documentation">
+      <div class="mb-5">
+        <p class="px-5 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
           README
-        </h1>
-        <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
+        </p>
+        <a href="/docs" class={linkClass(currentPath === "/docs")}>
+          <span class="min-w-0 pl-2 break-words">README / welcome</span>
+        </a>
       </div>
 
-      <Link
-        href={`/docs`}
-        label={`welcome`}
-        variant={`link`}
-        buttonClassName={`${navButtonClass} `}
-        aTagClassName={navTagClass(`/docs`)}
-      />
-    </div>
-    {sections.map((section) => (
-      <div class="flex flex-col">
-        <div class="flex items-center">
-          <h2 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
+      {sections.map((section) => (
+        <div class="mb-5">
+          <p class="px-5 pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
             {section.name}
-          </h2>
-          <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
+          </p>
+          <div class="flex flex-col">
+            {section.items.map((item) => {
+              const href = `/docs/${item.href}`;
+              return (
+                <a href={href} class={linkClass(currentPath === href)}>
+                  <span class="min-w-0 pl-2 break-words">{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
         </div>
-        {section.items.map((item) => (
-          <Link
-            href={`/docs/${item.href}`}
-            label={item.label}
-            variant={`link`}
-            buttonClassName={navButtonClass}
-            aTagClassName={navTagClass(`/docs/${item.href}`)}
-          />
-        ))}
-      </div>
-    ))}
+      ))}
+    </nav>
   </div>
-</div>
+</aside>

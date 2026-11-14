@@ -5,6 +5,8 @@ import DocsHead from "@/components/layout/docs/DocsHead.astro";
 import DocsHeader from "@/components/layout/docs/DocsHeader.astro";
 import DocsSidebar from "@/components/layout/docs/DocsSidebar.astro";
 import DocsFooter from "@/components/layout/docs/DocsFooter.astro";
+import DocsBreadcrumb from "@/components/layout/docs/DocsBreadcrumb.astro";
+import { DocsMobileSidebar } from "@/components/layout/docs/DocsMobileSidebar";
 
 const sections = await getDocsSections();
 const searchEntries = await getDocsSearchEntries(readmeRaw);
@@ -30,6 +32,16 @@ const { title = "cdin" } = Astro.props;
           <DocsSidebar sections={sections} currentPath={currentPath} />
 
           <article class="col-span-12 min-w-0 overflow-x-clip px-2 py-6 md:col-span-9 md:border-l md:p-6">
+            <div class="mb-6 flex items-center gap-3 border-b border-border pb-4 md:mb-8">
+              <div class="md:hidden">
+                <DocsMobileSidebar
+                  client:visible
+                  sections={sections}
+                  currentPath={currentPath}
+                />
+              </div>
+              <DocsBreadcrumb sections={sections} currentPath={currentPath} />
+            </div>
             <div class="docs-prose">
               <slot />
             </div>
