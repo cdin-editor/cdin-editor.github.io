@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/sections/Link.astro";
 import { getDocsSections } from "@/lib/docs";
+import "@/styles/docs-content.css";
 
 const sections = await getDocsSections();
 
@@ -46,8 +47,10 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
       </div>
     </div>
 
-    <article class="prose dark:prose-invert md:col-span-9 col-span-12 md:border-l p-6 max-w-full overflow-x-hidden">
-      <slot />
+    <article class="min-w-0 md:col-span-9 col-span-12 md:border-l p-6 overflow-x-clip">
+      <div class="docs-prose">
+        <slot />
+      </div>
     </article>
   </section>
 </BaseLayout>

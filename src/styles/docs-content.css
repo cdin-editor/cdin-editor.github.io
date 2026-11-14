@@ -1,0 +1,283 @@
+/*
+ * Docs prose — hand-written typography for markdown rendered inside DocsLayout.
+ * Replaces @tailwindcss/typography. Scoped to .docs-prose only.
+ */
+
+.docs-prose {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    overflow-wrap: break-word;
+}
+
+/* ---------- headings ---------- */
+
+.docs-prose :where(h1, h2, h3, h4) {
+    color: var(--foreground);
+    text-wrap: balance;
+    scroll-margin-top: 5.5rem;
+}
+
+.docs-prose h1 {
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.docs-prose h2 {
+    margin: 3.5rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.docs-prose h3 {
+    margin: 2.25rem 0 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.docs-prose h4 {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.docs-prose > :where(h2, h3):first-child,
+.docs-prose h1 + h2 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
+/* ---------- text ---------- */
+
+.docs-prose p {
+    margin: 0 0 1rem;
+    text-wrap: pretty;
+}
+
+.docs-prose a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in oklch, var(--foreground) 35%, transparent);
+    transition:
+        color 150ms ease-out,
+        text-decoration-color 150ms ease-out;
+}
+
+.docs-prose a:hover {
+    color: var(--primary);
+    text-decoration-color: currentColor;
+}
+
+.docs-prose a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.docs-prose strong {
+    color: var(--foreground);
+    font-weight: 700;
+}
+
+.docs-prose del {
+    color: var(--muted-foreground);
+}
+
+/* ---------- code ---------- */
+
+.docs-prose :not(pre) > code {
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--border);
+    background: var(--muted);
+    font-size: 0.875em;
+    font-weight: 500;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.docs-prose pre {
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    tab-size: 4;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+}
+
+.docs-prose pre code {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: inherit;
+    white-space: pre;
+}
+
+/* Language tag, straight from the fence info string. */
+.docs-prose pre[data-language]::after {
+    content: attr(data-language);
+    content: attr(data-language) / "";
+    position: absolute;
+    inset: 0 0 auto auto;
+    padding: 0.125rem 0.5rem;
+    background: var(--foreground);
+    color: var(--background);
+    font-size: 0.625rem;
+    line-height: 1.6;
+    pointer-events: none;
+}
+
+/* Shiki's dual-theme output: light palette inline, dark palette via vars. */
+.dark .docs-prose .astro-code,
+.dark .docs-prose .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ---------- keys ---------- */
+
+.docs-prose kbd {
+    display: inline-block;
+    padding: 0 0.35em;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    background: var(--background);
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+/* ---------- lists ---------- */
+
+.docs-prose :where(ul, ol) {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.docs-prose ul {
+    list-style: square;
+}
+
+.docs-prose ol {
+    list-style: decimal;
+}
+
+.docs-prose li {
+    text-wrap: pretty;
+}
+
+.docs-prose li::marker {
+    color: var(--muted-foreground);
+}
+
+.docs-prose li + li {
+    margin-top: 0.25rem;
+}
+
+.docs-prose :where(ul, ol) :where(ul, ol) {
+    margin: 0.25rem 0 0;
+}
+
+.docs-prose li > p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- tables ---------- */
+
+.docs-prose table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.docs-prose thead {
+    border-bottom: 1px solid var(--foreground);
+}
+
+.docs-prose th {
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    text-align: left;
+    vertical-align: bottom;
+    font-weight: 600;
+}
+
+.docs-prose td {
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.docs-prose tbody tr {
+    transition: background-color 120ms ease-out;
+}
+
+.docs-prose tbody tr:hover {
+    background: color-mix(in oklch, var(--accent) 45%, transparent);
+}
+
+@media (max-width: 63.99rem) {
+    .docs-prose table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* ---------- quotes, rules, media ---------- */
+
+.docs-prose blockquote {
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.25rem 1rem;
+    border-left: 2px solid var(--foreground);
+    color: var(--muted-foreground);
+}
+
+.docs-prose blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+.docs-prose hr {
+    margin: 3rem 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+.docs-prose img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+}
+
+.docs-prose > :first-child {
+    margin-top: 0;
+}
+
+.docs-prose > :last-child {
+    margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .docs-prose a,
+    .docs-prose tbody tr {
+        transition: none;
+    }
+}
