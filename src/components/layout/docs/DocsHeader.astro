@@ -2,13 +2,14 @@
 import Link from "@/components/sections/Link.astro";
 import { ModeToggle } from "@/components/layout/ModeToggle";
 import { DocsSearch } from "@/components/layout/DocsSearch";
-import type { DocsSection } from "@/lib/docs";
+import type { DocsSection, DocsSearchEntry } from "@/lib/docs";
 
 interface Props {
   sections: DocsSection[];
+  searchEntries: DocsSearchEntry[];
 }
 
-const { sections } = Astro.props;
+const { sections, searchEntries } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 border-b border-t bg-background">
@@ -28,7 +29,7 @@ const { sections } = Astro.props;
     </a>
 
     <div class="flex min-w-0 flex-1 items-center px-2 md:px-4">
-      <DocsSearch client:visible sections={sections} />
+      <DocsSearch client:visible searchEntries={searchEntries} />
     </div>
 
     <div class="flex shrink-0 items-stretch">

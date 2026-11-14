@@ -1,11 +1,13 @@
 ---
-import { getDocsSections } from "@/lib/docs";
+import readmeRaw from "@/data/README.md?raw";
+import { getDocsSections, getDocsSearchEntries } from "@/lib/docs";
 import DocsHead from "@/components/layout/docs/DocsHead.astro";
 import DocsHeader from "@/components/layout/docs/DocsHeader.astro";
 import DocsSidebar from "@/components/layout/docs/DocsSidebar.astro";
 import DocsFooter from "@/components/layout/docs/DocsFooter.astro";
 
 const sections = await getDocsSections();
+const searchEntries = await getDocsSearchEntries(readmeRaw);
 
 const { url } = Astro;
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
@@ -20,7 +22,7 @@ const { title = "cdin" } = Astro.props;
 <html lang="en">
   <DocsHead title={title} />
   <body class="min-h-dvh overflow-x-clip flex flex-col fira-code-style">
-    <DocsHeader sections={sections} />
+    <DocsHeader sections={sections} searchEntries={searchEntries} />
 
     <main class="mx-auto w-full max-w-7xl flex-1 px-2 md:px-8">
       <div class="flex h-full min-h-full w-full border-x">
