@@ -42,7 +42,7 @@ export function DocsMobileSidebar({
           />
         }
       >
-        <Menu className="size-4" />
+        <Menu className="size-3" />
       </SheetTrigger>
       <SheetContent
         side="left"
