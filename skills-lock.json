@@ -25,6 +25,12 @@
       "skillPath": "skills/shadcn/SKILL.md",
       "computedHash": "4a2992a45f22b87b59627d12802e1c8d3e1dd178b0c3011b584732b8a55ca1c4"
     },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "ff6863fc7c1be035b294703b2e7c90b2197548985ca4cb98f58740a7e84dc0cc"
+    },
     "vercel-composition-patterns": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
