@@ -13,7 +13,7 @@ const { sections, searchEntries } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 border-b border-t bg-background">
-  <nav class="mx-auto flex w-full max-w-7xl items-stretch border-x">
+  <nav class="mx-auto flex w-full max-w-7xl items-stretch justify-between border-x">
     <a
       href="/"
       class="flex shrink-0 items-center border-r px-4"
@@ -28,17 +28,20 @@ const { sections, searchEntries } = Astro.props;
       />
     </a>
 
-    <div class="flex min-w-0 flex-1 items-center px-2 md:px-4">
+    <div class="hidden min-w-0 flex-1 items-center px-2 md:flex md:px-4">
       <DocsSearch client:visible searchEntries={searchEntries} />
     </div>
 
     <div class="flex shrink-0 items-stretch">
+      <div class="flex items-center px-2 md:hidden">
+        <DocsSearch client:visible searchEntries={searchEntries} />
+      </div>
       <ModeToggle client:visible />
       <Link
         href="/download"
         label="Download"
         variant="ghost"
-        buttonClassName="m-0 h-full rounded-none border-0 border-l border-border ring-0 hover:bg-accent/40"
+        buttonClassName="m-0 hidden h-full rounded-none border-0 border-l border-border ring-0 hover:bg-accent/40 md:inline-flex"
         aTagClassName="flex h-full items-center px-5 text-xs font-semibold tracking-widest md:px-6"
       />
     </div>
