@@ -43,8 +43,8 @@ export function DocsSearch({ sections }: { sections: DocsSection[] }) {
         <span className="truncate">Search docs...</span>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command>
+      <CommandDialog open={open} onOpenChange={setOpen} className="!rounded-none">
+        <Command className="!rounded-none [&_[data-slot=input-group]]:!rounded-none [&_[data-slot=command-item]]:!rounded-none [&_[data-slot=command-group]]:!rounded-none">
           <CommandInput placeholder="Search docs..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
