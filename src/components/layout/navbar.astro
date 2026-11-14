@@ -75,11 +75,7 @@ const docsSections = isDocs ? await getDocsSections() : [];
         </li>
       </div>
       <li class="md:hidden flex">
-        <MobileNav
-          client:visible
-          docsSections={docsSections}
-          currentPath={currentPath}
-        />
+        <MobileNav client:visible currentPath={currentPath} />
       </li>
     </ul>
   </nav>

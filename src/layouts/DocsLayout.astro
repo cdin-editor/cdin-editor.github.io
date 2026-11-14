@@ -1,16 +1,13 @@
 ---
-import Link from "@/components/sections/Link.astro";
 import { getDocsSections } from "@/lib/docs";
-import { ModeToggle } from "@/components/layout/ModeToggle";
-import { DocsSearch } from "@/components/layout/DocsSearch";
-import "@/styles/docs-content.css";
-import "@/styles/global.css";
-import ThemeScript from "@/components/layout/ThemeScript.astro";
+import DocsHead from "@/components/layout/docs/DocsHead.astro";
+import DocsHeader from "@/components/layout/docs/DocsHeader.astro";
+import DocsSidebar from "@/components/layout/docs/DocsSidebar.astro";
+import DocsFooter from "@/components/layout/docs/DocsFooter.astro";
 
 const sections = await getDocsSections();
 
 const { url } = Astro;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const currentPath = url.pathname.replace(/\/$/, "") || "/";
 
 interface Props {
@@ -18,159 +15,24 @@ interface Props {
 }
 
 const { title = "cdin" } = Astro.props;
-
-const footerLinks = [
-  { label: "Back to site", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Download", href: "/download" },
-  {
-    label: "GitHub",
-    href: "https://github.com/cdin-editor/cdin",
-    external: true,
-  },
-];
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <ThemeScript />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
+  <DocsHead title={title} />
   <body class="min-h-dvh overflow-x-clip flex flex-col fira-code-style">
-    <header class="sticky top-0 z-50 border-b border-t bg-background">
-      <nav class="mx-auto flex h-14 w-full max-w-7xl items-stretch border-x">
-        <a
-          href="/"
-          class="flex shrink-0 items-center border-r px-3 md:px-4"
-          aria-label="cdin home"
-        >
-          <img
-            src="/cdin-icons/svg/cdin-original-transparent.svg"
-            alt=""
-            width="1980"
-            height="1080"
-            class="aspect-square w-10 md:w-12"
-          />
-        </a>
-
-        <div class="flex min-w-0 flex-1 items-center px-2 md:px-4">
-          <DocsSearch client:visible sections={sections} />
-        </div>
-
-        <div class="flex shrink-0 items-stretch">
-          <ModeToggle client:visible />
-          <Link
-            href="/download"
-            label="Download"
-            variant="ghost"
-            buttonClassName="m-0 h-full rounded-none border-0 border-l border-border ring-0 hover:bg-accent/40"
-            aTagClassName="h-full px-3 text-xs font-semibold tracking-widest md:px-5 md:text-sm"
-          />
-        </div>
-      </nav>
-    </header>
+    <DocsHeader sections={sections} />
 
     <main class="mx-auto w-full max-w-7xl flex-1 px-2 md:px-8">
       <div class="flex h-full min-h-full w-full border-x">
         <section class="grid w-full grid-cols-12">
-          <div class="relative hidden overflow-x-clip md:col-span-3 md:block border-b">
-            <div class="sticky top-20 z-40 py-4">
-              <div class="flex flex-col pb-1">
-                <div class="flex items-center">
-                  <h1 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
-                    README
-                  </h1>
-                  <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
-                </div>
-
-                <Link
-                  href={`/docs`}
-                  label={`welcome`}
-                  variant={`link`}
-                  buttonClassName={`justify-start border-x-0 border-b border-t-0 border-accent p-0 m-0 break-words-all hover:no-underline `}
-                  aTagClassName={`w-fit py-2 duration-150 hover:text-primary pl-8 ${currentPath === `/docs` ? "text-primary" : "text-muted-foreground"}`}
-                />
-              </div>
-              {sections.map((section) => (
-                <div class="flex flex-col">
-                  <div class="flex items-center">
-                    <h2 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
-                      {section.name}
-                    </h2>
-                    <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
-                  </div>
-                  {section.items.map((item) => (
-                    <Link
-                      href={`/docs/${item.href}`}
-                      label={item.label}
-                      variant={`link`}
-                      buttonClassName={`justify-start border-x-0 border-b border-t-0 border-accent p-0 m-0 break-words-all hover:no-underline`}
-                      aTagClassName={`w-fit py-2 duration-150 hover:text-primary pl-8 ${currentPath === `/docs/${item.href}` ? "text-primary" : "text-muted-foreground"}`}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          <DocsSidebar sections={sections} currentPath={currentPath} />
 
           <article class="col-span-12 min-w-0 overflow-x-clip px-2 py-6 md:col-span-9 md:border-l md:p-6">
             <div class="docs-prose">
               <slot />
             </div>
 
-            <footer class="mt-12 flex flex-col items-center justify-center gap-4 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-              <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-                <a
-                  href="/"
-                  class="text-primary underline underline-offset-4 transition-[text-decoration-thickness] duration-150 hover:decoration-2"
-                >
-                  <img
-                    src="/cdin-icons/svg/cdin-outline-transparent.svg"
-                    alt="cdin home"
-                    width="1980"
-                    height="1080"
-                    class="h-4 w-auto md:h-5"
-                  />
-                </a>
-                <span class="size-1 bg-foreground/10" aria-hidden="true"></span>
-                <nav aria-label="Docs footer">
-                  <ul class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-                    {footerLinks.map((link, i) => (
-                      <>
-                        <li>
-                          <a
-                            href={link.href}
-                            target={link.external ? "_blank" : undefined}
-                            rel={
-                              link.external ? "noopener noreferrer" : undefined
-                            }
-                            class="text-primary underline underline-offset-4 transition-[text-decoration-thickness] duration-150 hover:decoration-2"
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                        {i < footerLinks.length - 1 && (
-                          <li aria-hidden="true">
-                            <span class="block size-1 bg-foreground/10"></span>
-                          </li>
-                        )}
-                      </>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-            </footer>
+            <DocsFooter />
           </article>
         </section>
       </div>

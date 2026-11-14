@@ -1,0 +1,56 @@
+---
+import Link from "@/components/sections/Link.astro";
+import type { DocsSection } from "@/lib/docs";
+
+interface Props {
+  sections: DocsSection[];
+  currentPath: string;
+}
+
+const { sections, currentPath } = Astro.props;
+
+const navButtonClass =
+  "justify-start border-x-0 border-b border-t-0 border-accent p-0 m-0 break-words-all hover:no-underline";
+const navTagClass = (href: string) =>
+  `w-fit py-2 duration-150 hover:text-primary pl-8 ${currentPath === href ? "text-primary" : "text-muted-foreground"}`;
+---
+
+<div class="relative hidden overflow-x-clip md:col-span-3 md:block border-b">
+  <div class="sticky top-20 z-40 py-4">
+    <div class="flex flex-col pb-1">
+      <div class="flex items-center">
+        <h1 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
+          README
+        </h1>
+        <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
+      </div>
+
+      <Link
+        href={`/docs`}
+        label={`welcome`}
+        variant={`link`}
+        buttonClassName={`${navButtonClass} `}
+        aTagClassName={navTagClass(`/docs`)}
+      />
+    </div>
+    {sections.map((section) => (
+      <div class="flex flex-col">
+        <div class="flex items-center">
+          <h2 class="pl-6 pr-0 py-2 text-xs font-semibold tracking-widest uppercase">
+            {section.name}
+          </h2>
+          <span class="mr-6 h-px w-full bg-linear-to-r from-background to-foreground/20"></span>
+        </div>
+        {section.items.map((item) => (
+          <Link
+            href={`/docs/${item.href}`}
+            label={item.label}
+            variant={`link`}
+            buttonClassName={navButtonClass}
+            aTagClassName={navTagClass(`/docs/${item.href}`)}
+          />
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
