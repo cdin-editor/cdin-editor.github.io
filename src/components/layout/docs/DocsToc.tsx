@@ -11,6 +11,16 @@ export function DocsToc({ headings }: { headings: Heading[] }) {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
+    if (items.length === 0) {
+      setActiveId("");
+      return;
+    }
+    const hash = window.location.hash.replace("#", "");
+    const initial = items.some((h) => h.slug === hash) ? hash : items[0].slug;
+    setActiveId((prev) => (prev && items.some((h) => h.slug === prev) ? prev : initial));
+  }, [items]);
+
+  useEffect(() => {
     if (items.length === 0) return;
     const els = items
       .map((h) => document.getElementById(h.slug))
