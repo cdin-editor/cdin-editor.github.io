@@ -20,6 +20,7 @@
     "@types/react-dom": "^19.3.0",
     "astro": "7.4.11",
     "class-variance-authority": "^0.7.1",
+    "cmdk": "^1.1.1",
     "cn": "^0.4.0",
     "lucide-react": "^1.73.0",
     "react": "^19.3.1",
