@@ -7,6 +7,7 @@ import DocsSidebar from "@/components/layout/docs/DocsSidebar.astro";
 import DocsFooter from "@/components/layout/docs/DocsFooter.astro";
 import DocsBreadcrumb from "@/components/layout/docs/DocsBreadcrumb.astro";
 import { DocsMobileSidebar } from "@/components/layout/docs/DocsMobileSidebar";
+import { DocsToc } from "@/components/layout/docs/DocsToc";
 
 const sections = await getDocsSections();
 const searchEntries = await getDocsSearchEntries(readmeRaw);
@@ -16,9 +17,10 @@ const currentPath = url.pathname.replace(/\/$/, "") || "/";
 
 interface Props {
   title?: string;
+  headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title = "cdin" } = Astro.props;
+const { title = "cdin", headings = [] } = Astro.props;
 ---
 
 <html lang="en">
@@ -31,9 +33,9 @@ const { title = "cdin" } = Astro.props;
         <section class="grid w-full grid-cols-12">
           <DocsSidebar sections={sections} currentPath={currentPath} />
 
-          <article class="col-span-12 min-w-0 overflow-x-clip px-2 py-6 md:col-span-9 md:border-l md:p-6">
+          <article class="col-span-12 min-w-0 overflow-x-clip px-2 py-6 lg:col-span-6 lg:border-l md:p-6">
             <div class="mb-6 flex items-center gap-3 border-b border-border pb-4 md:mb-8">
-              <div class="md:hidden">
+              <div class="lg:hidden">
                 <DocsMobileSidebar
                   client:visible
                   sections={sections}
@@ -48,6 +50,8 @@ const { title = "cdin" } = Astro.props;
 
             <DocsFooter />
           </article>
+
+          <DocsToc client:visible headings={headings} />
         </section>
       </div>
     </main>
