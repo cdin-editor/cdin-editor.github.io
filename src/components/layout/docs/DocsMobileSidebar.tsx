@@ -46,7 +46,7 @@ export function DocsMobileSidebar({
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="w-[18rem] max-w-[85vw] gap-0 p-0 sm:max-w-xs"
+        className="bg-background border-t border-l border-b w-[18rem] max-w-[85vw] gap-0 p-0 sm:max-w-xs"
       >
         <SheetHeader className="border-b border-border px-5 py-4">
           <SheetTitle className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
